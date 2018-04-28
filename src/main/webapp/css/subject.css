@@ -1,0 +1,23 @@
+.show-main{
+    margin-top: 50px;
+}
+.show-sub-main{
+    margin-top: 20px;
+    padding-top: 10px;
+    height: 120px;
+}
+.show-sub-image{
+    position: absolute;
+    margin-left: 30px;
+
+}
+.show-sub-info{
+    float: left;
+    position: absolute;
+    padding-top: 5px;
+    margin-left: 350px;
+    margin-right: 20px;
+}
+.show-sub-info p{
+    text-indent:2em;
+}

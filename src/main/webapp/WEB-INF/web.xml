@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+        http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+
+    <!-- BaseServlet start-->
+    <servlet>
+        <servlet-name>BaseServlet</servlet-name>
+        <servlet-class>com.wper.controller.BaseServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BaseServlet</servlet-name>
+        <url-pattern>/BaseServlet</url-pattern>
+    </servlet-mapping>
+    <!-- BaseServlet end-->
+
+    <!-- ActionServlet start-->
+    <servlet>
+        <servlet-name>ActionServlet</servlet-name>
+        <servlet-class>com.wper.controller.ActionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ActionServlet</servlet-name>
+        <url-pattern>/ActionServlet</url-pattern>
+    </servlet-mapping>
+    <!-- ActionServlet end-->
+
+    <!-- RegServlet start-->
+    <servlet>
+        <servlet-name>RegServlet</servlet-name>
+        <servlet-class>com.wper.controller.RegServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegServlet</servlet-name>
+        <url-pattern>/RegServlet</url-pattern>
+    </servlet-mapping>
+    <!-- RegServlet end-->
+
+    <!-- LoginServlet start-->
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.wper.controller.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+    <!-- LoginServlet end-->
+
+    <!-- MeServlet start-->
+    <servlet>
+        <servlet-name>MeServlet</servlet-name>
+        <servlet-class>com.wper.controller.MeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MeServlet</servlet-name>
+        <url-pattern>/MeServlet</url-pattern>
+    </servlet-mapping>
+    <!-- MeServlet end-->
+
+    <!-- SubjectServlet start-->
+    <servlet>
+        <servlet-name>SubjectServlet</servlet-name>
+        <servlet-class>com.wper.controller.SubjectServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SubjectServlet</servlet-name>
+        <url-pattern>/SubjectServlet</url-pattern>
+    </servlet-mapping>
+    <!-- SubjectServlet end-->
+
+    <!--FileServlet start-->
+    <servlet>
+        <servlet-name>FileServlet</servlet-name>
+        <servlet-class>com.wper.controller.FileServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FileServlet</servlet-name>
+        <url-pattern>/FileServlet</url-pattern>
+    </servlet-mapping>
+    <!--FileServlet end-->
+
+    <!--UpLoadingServlet start-->
+    <servlet>
+        <servlet-name>UpLoadingServlet</servlet-name>
+        <servlet-class>com.wper.controller.UpLoadingServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpLoadingServlet</servlet-name>
+        <url-pattern>/UpLoadingServlet</url-pattern>
+    </servlet-mapping>
+    <!--UpLoadingServlet end-->
+
+    <!--ManageServlet start-->
+    <servlet>
+        <servlet-name>ManageServlet</servlet-name>
+        <servlet-class>com.wper.controller.ManageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageServlet</servlet-name>
+        <url-pattern>/ManageServlet</url-pattern>
+    </servlet-mapping>
+    <!--ManageServlet end-->
+
+    <!--VideoServlet start-->
+    <servlet>
+        <servlet-name>VideoServlet</servlet-name>
+        <servlet-class>com.wper.controller.VideoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VideoServlet</servlet-name>
+        <url-pattern>/VideoServlet</url-pattern>
+    </servlet-mapping>
+
+    <!--VideoServlet end-->
+</web-app>

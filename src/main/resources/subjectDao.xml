@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wper.dao.SubjectDao">
+    <!-- 1.获取所有课程信息 -->
+    <select id="getAllSub" resultType="Subject">
+        select id,name,type,addtime as addTime,info,image_url as imageUrl
+        from subject
+    </select>
+    <!-- 2.获取所有课程信息 -->
+    <insert id="addSubject" parameterType="Subject">
+        insert into subject(name,type,info) values (#{name},#{type},#{info})
+    </insert>
+    <!-- 3.根据id删除课程信息 -->
+    <delete id="deleteSub" parameterType="int">
+        delete from subject where id=#{id}
+    </delete>
+</mapper>

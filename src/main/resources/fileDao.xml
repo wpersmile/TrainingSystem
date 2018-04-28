@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wper.dao.FilesDao">
+    <!-- 1.获取所有文件信息 -->
+    <select id="getAllFile" resultType="Files">
+        select id,name,url,type,addtime as addTime
+        from file
+    </select>
+    <!--2.添加文件-->
+    <insert id="addFile" parameterType="Files">
+        insert into file(name,url,type) values (#{name},#{url},#{type})
+    </insert>
+    <!--3.删除指定文件-->
+    <delete id="deleteFile">
+        delete from file
+        where id=#{id}
+    </delete>
+    <!--4.根据id查询文件-->
+    <select id="getFile" resultType="Files">
+        select id,name,url,type,addtime as addTime
+        from file
+        where id=#{id}
+    </select>
+</mapper>

@@ -1,0 +1,64 @@
+.body{
+    /*相对定位 父DIV+子DIV使用决定定位可以保证随着窗口改变位置不变*/
+    margin:0;
+    padding:0;
+
+}
+a:link,a:visited
+{
+    display:block;
+    width:120px;
+    font-weight:bold;
+    color:black;
+    text-align:center;
+    padding:4px;
+    text-decoration:none;
+    text-transform:uppercase;
+}
+a:hover,a:active
+{
+    background-color:#878787;
+}
+.top{
+    padding: 0;
+}
+.top a{
+    margin: 0;
+    padding: 0;
+    width:300px;
+}
+.top a image{
+    margin: 0;
+}
+.center-head{
+    position:absolute;
+    margin-left:300px;
+}
+.right-head{
+    position:absolute;
+    right:30px;
+}
+.right-head a{
+    padding-left:10px;
+}
+ul
+{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+}
+li
+{
+    float:left;
+}
+.center-body{
+    margin-top:200px;
+    clear:both;
+    text-align:center;
+    font-size:30px;
+}
+.footer{
+    position:absolute;
+    bottom:0;
+}
