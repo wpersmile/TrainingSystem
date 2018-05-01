@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("type",1);
                 }
 
-                session.setMaxInactiveInterval(60);
+                session.setMaxInactiveInterval(600);
                 resp.sendRedirect("/index.jsp");
             }
             else {

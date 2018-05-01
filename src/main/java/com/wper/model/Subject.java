@@ -11,14 +11,14 @@ public class Subject implements Serializable {
     private String type;
     private Timestamp addTime;
     private String info;
-    private String imageUrl;
+    private String teacher;
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getTeacher() {
+        return teacher;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setTeacher(String teacher) {
+        this.teacher = teacher;
     }
 
     public String getInfo() {
@@ -62,28 +62,20 @@ public class Subject implements Serializable {
     }
 
     /*addSubject 构造函数*/
-    public Subject(String name, String type, String info) {
+    public Subject(String name, String type, String teacher, String info) {
         this.name = name;
         this.type = type;
         this.info = info;
+        this.teacher=teacher;
     }
+    /*getAllSub 构造函数*/
 
-   /*getAllSub 构造函数*/
-
-    public Subject(String name, String type, Timestamp addTime, String info, String imageUrl) {
-        this.name = name;
-        this.type = type;
-        this.addTime = addTime;
-        this.info = info;
-        this.imageUrl = imageUrl;
-    }
-
-    public Subject(int id, String name, String type, Timestamp addTime, String info, String imageUrl) {
+    public Subject(int id, String name, String type, Timestamp addTime,String teacher,String info) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.addTime = addTime;
         this.info = info;
-        this.imageUrl = imageUrl;
+        this.teacher = teacher;
     }
 }

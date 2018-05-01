@@ -51,6 +51,7 @@
                 <li><a href="about.jsp">学院介绍</a></li>
                 <li><a href="teacher.jsp">金牌讲师</a></li>
                 <li><a href="subject.jsp">课程介绍</a></li>
+                <li><a href="study.jsp" >在线试学</a></li>
                 <li><a href="file.jsp">资料下载</a></li>
 
                 <c:if test="${sessionScope.user==null}">
@@ -60,6 +61,9 @@
 
                 <c:if test="${sessionScope.user!=null}">
                     <li><a href="<%=basePath+"MeServlet"%>" >个人中心</a></li>
+                </c:if>
+                <c:if test="${sessionScope.type==0}">
+                    <li><a href="<%=basePath+"ActionServlet?method=managePage"%>" >后台管理</a></li>
                 </c:if>
             </ul>
         </div><!--/.nav-collapse -->

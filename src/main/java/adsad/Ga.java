@@ -1,5 +1,6 @@
 package adsad;
 
+import com.wper.model.MySubject;
 import com.wper.model.Video;
 import com.wper.service.Impl.*;
 
@@ -59,10 +60,12 @@ public class Ga {
 			System.out.println(u.getPhone());
 		}*/
 
-		VideoServiceImpl videoService=new VideoServiceImpl();
+	/*	VideoServiceImpl videoService=new VideoServiceImpl();
 
 		for (Video v:videoService.getAllVideo()
 			 ) {
 			System.out.println(v.getId()+v.getName());
-		}
+		}*/
+	MySubServiceImpl mySubService=new MySubServiceImpl();
+	mySubService.addSubToUser(new MySubject("312312","3213123123213"));
 }}

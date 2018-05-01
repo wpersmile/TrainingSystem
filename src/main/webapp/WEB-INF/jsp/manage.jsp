@@ -19,7 +19,7 @@
     </script>
 </c:if>
 <c:if test="${sessionScope.type!=0}">
-    <c:redirect url="login.jsp"/>
+    <c:redirect url="../../login.jsp"/>
 </c:if>
 <!DOCTYPE html>
 <html>
@@ -29,9 +29,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>学院介绍</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <script type="application/javascript" src="js/jquery-3.3.1.min.js" ></script>
-    <script type="application/javascript" src="js/bootstrap.min.js" ></script>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
+    <script type="application/javascript" src="../../js/jquery-3.3.1.min.js" ></script>
+    <script type="application/javascript" src="../../js/bootstrap.min.js" ></script>
 
     <style type="text/css">
         .my-nav {
@@ -66,17 +66,8 @@
             }
         }
 
-        function checkType() {
-            var type=document.getElementById("inName").value;
-            if (type===""){
-                return false
-            }
-            else {
-                return true;
-            }
-        }
         function checkInfo() {
-            var info=document.getElementById("inName").value;
+            var info=document.getElementById("inInfo").value;
             if (info===""){
                 return false
             }
@@ -86,7 +77,7 @@
         }
 
         function checkSubject() {
-            if (checkName()&&checkType()&&checkInfo()){
+            if (checkName()&&checkInfo()){
                 document.getElementById("form-sub").submit();
             }
             else {
@@ -132,25 +123,21 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="manage.jsp">后台管理</a>
+            <a class="navbar-brand" href="#">后台管理</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="index.jsp">前往学院</a></li>
+                <li><a href="../../index.jsp">前往学院</a></li>
                 <!--data-toggle="tab" 触发js切换面板效果-->
                 <li><a href="#pane1" data-toggle="tab">用户管理</a></li>
                 <li><a href="#pane2" data-toggle="tab">文件上传</a></li>
-                <li><a href="#pane3" data-toggle="tab">课程管理</a></li>
+                <li><a href="#pane3" data-toggle="tab">教师管理</a></li>
+                <li><a href="#pane4" data-toggle="tab">视频管理</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">课程管理 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#sub1" data-toggle="tab">课程列表</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">One more separated link</a></li>
+                        <li><a href="#sub2" data-toggle="tab">课程添加</a></li>
                     </ul>
                 </li>
 
@@ -246,7 +233,7 @@
                         </div>
                     </div>
 
-                        <div class="tab-pane" id="pane3" style="height: 620px;">
+                        <div class="tab-pane" id="sub2" style="height: 620px;">
                             <div class="row">
                                 <div class="col-sm-4"></div>
                                 <div class="col-sm-4">
@@ -257,13 +244,23 @@
                                             <input type="text" id="inName" name="addName" class="form-control"/>
                                         </div>
                                         <div class="form-group">
-                                        <label for="inInfo">课程信息</label>
-                                        <input type="text" id="inType" name="type" class="form-control"/>
-                                </div>
+                                            <h3>请选择课程类型</h3>
+                                                <select class="form-control" name="type">
+                                                    <option>基础</option>
+                                                    <option>中级</option>
+                                                    <option>高级</option>
+                                                    <option>实战</option>
+                                                </select>
+                                        </div>
                                         <div class="form-group">
-                                            <label for="inInfo">课程信息</label>
+                                            <label for="inTeacher">主讲教师</label>
+                                            <input type="text" id="inTeacher" name="teacher" class="form-control"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inInfo">课程描述</label>
                                             <input type="text" id="inInfo" name="info" class="form-control"/>
                                         </div>
+
                                     </form>
                                     <button type="submit" class="btn btn-primary" onclick="checkSubject()">确认添加</button>
                                 </div>
@@ -277,7 +274,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <table class="table table-striped table-hover table-bordered">
-                                        <caption>用户表</caption>
+                                        <caption>课程表</caption>
                                         <thead>
                                         <tr>
                                             <th>#</th>
@@ -330,7 +327,7 @@
 -->
 
 <div class="footer-body">
-    <a href="about.jsp">关于我们</a>|
+    <a href="../../about.jsp">关于我们</a>|
     <a target="_blank" href="tencent://message/?uin=775016131" alt="点击这里给我发消息" title="点击这里给我发消息">联系我们</a>|
     <a target="_blank" href="https://www.csdn.net/">学习论坛</a>|
     <a target="_blank" href="https://github.com/wpersmile">Github</a>

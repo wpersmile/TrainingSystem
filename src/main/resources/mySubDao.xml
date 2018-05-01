@@ -1,41 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wper.dao.MySubDao">
-    <!-- 1.添加一名学生 -->
-    <insert id="addUser" parameterType="User">
-        INSERT INTO user(phone,password,email)
-        VALUES (#{phone},#{password},#{email})
-    </insert>
-
-    <update id="updateUser" parameterType="User">
-        update user
-        set name =#{name},sex=#{sex},introduce=#{introduce}
-        where phone=#{phone}
-    </update>
-    <delete id="deleteUser" parameterType="User">
-        delete from user
-        where phone=#{phone}
-    </delete>
-
-    <select id="getUserPhone" parameterType="User" resultType="String">
-        SELECT phone FROM user
-        WHERE phone=#{phone}
-    </select>
-
-    <select id="getUserPass" parameterType="User" resultType="String">
-        SELECT password FROM user
-        WHERE phone=#{phone}
-    </select>
-
-    <select id="getUser"  resultType="User">
-        SELECT name,sex,phone,email,introduce FROM user
-        WHERE phone=#{phone}
-    </select>
-
+    <!-- 1.获取选课门数 -->
     <select id="getCountSub" resultType="int">
         select count(user_phone) from my_subject
         where user_phone=#{phone}
     </select>
+    <!-- 2.添加选课信息-->
+    <insert id="addSubToUser" parameterType="MySubject">
+        INSERT INTO user(user_phone as userPhone,sub_name as subName)
+        VALUES (#{userPhone},#{subName})
+    </insert>
+
+
+
 
     <select id="getMySubInfo" resultType="MySubject">
         select sub_name as subName,url from my_subject

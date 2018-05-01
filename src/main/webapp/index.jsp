@@ -84,6 +84,9 @@
                 <c:if test="${sessionScope.user!=null}">
                     <li><a href="<%=basePath+"MeServlet"%>" >个人中心</a></li>
                 </c:if>
+                <c:if test="${sessionScope.type==0}">
+                    <li><a href="<%=basePath+"ActionServlet?method=managePage"%>" >后台管理</a></li>
+                </c:if>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

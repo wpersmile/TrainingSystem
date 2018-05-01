@@ -7,6 +7,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <html>
 <head>
     <title>信息提示页</title>
@@ -14,15 +18,14 @@
 <body>
 <c:if test="${requestScope.message!=null}">
     <script>
-        //var str=document.getElementById("info").value;
         alert("successful");
-        window.location.href="manage.jsp";
+        window.location.href="<%=basePath+"ActionServlet?method=managePage"%>";
     </script>
 </c:if>
 <c:if test="${requestScope.message==null}">
     <script>
         alert("failure");
-        window.location.href="manage.jsp";
+        window.location.href="<%=basePath+"ActionServlet?method=managePage"%>";
     </script>
 </c:if>
 <p id="info">${requestScope.message}</p>

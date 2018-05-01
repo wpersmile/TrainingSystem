@@ -2,8 +2,10 @@ package com.wper.controller;
 
 import com.wper.baseUtil.Md5Util;
 import com.wper.model.Files;
+import com.wper.model.MySubject;
 import com.wper.model.User;
 import com.wper.service.Impl.FileServiceImpl;
+import com.wper.service.Impl.MySubServiceImpl;
 import com.wper.service.Impl.SubServiceImpl;
 import com.wper.service.Impl.UserServiceImpl;
 
@@ -43,6 +45,12 @@ public class BaseServlet extends HttpServlet {
                 break;
             case "deleteUser":
                 deleteUser(req,resp);
+                break;
+            case "addSubToUser":
+                addSubToUser(req,resp);
+                break;
+            case "deleteSubForUser":
+                deleteSubForUser(req,resp);
                 break;
                 default:
                     System.out.println("修改失败");
@@ -141,5 +149,23 @@ public class BaseServlet extends HttpServlet {
             System.out.println("删除了");
         }
         req.getRequestDispatcher("message.jsp").forward(req,resp);
+    }
+
+    private void addSubToUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //暂定未使用
+        //int id=Integer.parseInt(req.getParameter("id"));
+        String name=req.getParameter("name");
+        System.out.println(name);
+        MySubServiceImpl mySubService=new MySubServiceImpl();
+        HttpSession userSession=req.getSession();
+        String phone=(String) userSession.getAttribute("user");
+        mySubService.addSubToUser(new MySubject(phone,name));
+        req.setAttribute("message",1);
+        req.getRequestDispatcher("subject.jsp").forward(req,resp);
+    }
+
+
+    private void deleteSubForUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doDelete(req, resp);
     }
 }

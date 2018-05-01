@@ -7,7 +7,6 @@ public class MySubject implements Serializable {
     private int id;
     private String userPhone;
     private String subName;
-    private String url;
     private String addTime;
 
     public int getId() {
@@ -34,19 +33,23 @@ public class MySubject implements Serializable {
         this.subName = subName;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
     public String getAddTime() {
         return addTime;
     }
 
     public void setAddTime(String addTime) {
         this.addTime = addTime;
+    }
+
+    public MySubject(int id, String userPhone, String subName, String addTime) {
+        this.id = id;
+        this.userPhone = userPhone;
+        this.subName = subName;
+        this.addTime = addTime;
+    }
+
+    public MySubject(String userPhone, String subName) {
+        this.userPhone = userPhone;
+        this.subName = subName;
     }
 }

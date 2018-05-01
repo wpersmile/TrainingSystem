@@ -53,6 +53,7 @@
                 <li><a href="about.jsp">学院介绍</a></li>
                 <li><a href="teacher.jsp">金牌讲师</a></li>
                 <li><a href="subject.jsp">课程介绍</a></li>
+                <li><a href="study.jsp" >在线试学</a></li>
                 <li><a href="file.jsp">资料下载</a></li>
 
                 <c:if test="${sessionScope.user==null}">
@@ -62,6 +63,9 @@
 
                 <c:if test="${sessionScope.user!=null}">
                     <li><a href="<%=basePath+"MeServlet"%>" >个人中心</a></li>
+                </c:if>
+                <c:if test="${sessionScope.type==0}">
+                    <li><a href="<%=basePath+"ActionServlet?method=managePage"%>" >后台管理</a></li>
                 </c:if>
             </ul>
         </div><!--/.nav-collapse -->
@@ -74,20 +78,24 @@
     <c:redirect url="SubjectServlet"/>
 </c:if>
 <div class="show-main">
-    <c:forEach items="${subList}" var="sub">
-        <div class="show-sub-main">
-            <div class="show-sub-image">
-                <img src="${sub.imageUrl}">
-            </div>
-            <div class="show-sub-info">
-                <span>${sub.name}</span>
-                <p>${sub.info}</p>
-            </div>
-        </div>
-        <hr/>
-    </c:forEach>
+<c:forEach items="${subList}" var="sub" varStatus="s">
+    <div class="sub-item">
+        <h3>课程名称：${sub.name}</h3>
+        <h5>课程类型：${sub.type}</h5>
+        <h5>课程描述：${sub.info}</h5>
+        <h5>主讲教师：${sub.teacher}</h5>
+        <br>
+        <a href="BaseServlet?method=addSubToUser&id=${sub.id}&name=${sub.name}">确认选择</a>
+        <c:if test="${requestScope.message==1}">
+            <script>
+                alert("选择成功");
+            </script>
+        </c:if>
+
+        <a href="BaseServlet?method=deleteSubForUser&id=${sub.id}">确认删除</a>
+        <hr>
+    </div>
+</c:forEach>
 </div>
-
-
 </body>
 </html>

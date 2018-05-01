@@ -28,6 +28,6 @@ public class ManageServlet extends HttpServlet {
         List<Subject> list2=subService.getAllSub();
         req.setAttribute("subList",list2);
 
-        req.getRequestDispatcher("manage.jsp").forward(req,resp);
+        req.getRequestDispatcher("/WEB-INF/jsp/manage.jsp").forward(req,resp);
     }
 }
