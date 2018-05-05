@@ -1,3 +1,4 @@
+<%@ page import="java.io.Writer" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -20,7 +21,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>学院介绍</title>
+    <title>课程信息</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <script type="application/javascript" src="js/jquery-3.3.1.min.js" ></script>
     <script type="application/javascript" src="js/bootstrap.min.js" ></script>
@@ -49,7 +50,6 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="index.jsp">首页</a></li>
                 <li><a href="about.jsp">学院介绍</a></li>
                 <li><a href="teacher.jsp">金牌讲师</a></li>
                 <li><a href="subject.jsp">课程介绍</a></li>
@@ -85,17 +85,25 @@
         <h5>课程描述：${sub.info}</h5>
         <h5>主讲教师：${sub.teacher}</h5>
         <br>
-        <a href="BaseServlet?method=addSubToUser&id=${sub.id}&name=${sub.name}">确认选择</a>
-        <c:if test="${requestScope.message==1}">
-            <script>
-                alert("选择成功");
-            </script>
+        <c:if test="${sessionScope.user!=null}">
+            <a href="BaseServlet?method=addSubToUser&id=${sub.id}&name=${sub.name}">确认选择</a>
         </c:if>
-
-        <a href="BaseServlet?method=deleteSubForUser&id=${sub.id}">确认删除</a>
         <hr>
     </div>
 </c:forEach>
+    <%--选课与退选提示--%>
+
+    <c:if test="${requestScope.addType==1}">
+        <script>
+            alert("选课成功");
+            window.location.href="<%=basePath+"subject.jsp"%>";
+        </script>
+    </c:if>
+    <c:if test="${requestScope.addType==0}">
+        <script>
+            alert("已经选择过该门课程");
+        </script>
+    </c:if>
 </div>
 </body>
 </html>

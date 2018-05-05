@@ -3,20 +3,29 @@
 <mapper namespace="com.wper.dao.MySubDao">
     <!-- 1.获取选课门数 -->
     <select id="getCountSub" resultType="int">
-        select count(user_phone) from my_subject
+        select count(user_phone)
+        from my_subject
         where user_phone=#{phone}
     </select>
     <!-- 2.添加选课信息-->
     <insert id="addSubToUser" parameterType="MySubject">
-        INSERT INTO user(user_phone as userPhone,sub_name as subName)
+        INSERT INTO my_subject(user_phone,sub_name)
         VALUES (#{userPhone},#{subName})
     </insert>
-
-
-
-
+    <!-- 3.获取某人所选课程信息-->
     <select id="getMySubInfo" resultType="MySubject">
-        select sub_name as subName,url from my_subject
+        select id,sub_name as subName,user_phone as userPhone,addtime as addTime
+        from my_subject
         where user_phone=#{phone}
+    </select>
+    <!-- 4.删除某门选课信息-->
+    <delete id="deleteSubForUser" parameterType="String">
+        delete from my_subject where sub_name=#{subName}
+    </delete>
+    <!-- 5.查询课程是否已经选择-->
+    <select id="emptySub" resultType="int">
+        select count(sub_name)
+        from my_subject
+        where sub_name=#{arg0} and user_phone=#{arg1}
     </select>
 </mapper>

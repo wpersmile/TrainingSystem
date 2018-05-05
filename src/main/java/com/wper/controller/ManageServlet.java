@@ -1,8 +1,10 @@
 package com.wper.controller;
 
 import com.wper.model.Subject;
+import com.wper.model.Teacher;
 import com.wper.model.User;
 import com.wper.service.Impl.SubServiceImpl;
+import com.wper.service.Impl.TeacherServiceImpl;
 import com.wper.service.Impl.UserServiceImpl;
 
 import javax.servlet.ServletException;
@@ -27,6 +29,10 @@ public class ManageServlet extends HttpServlet {
         SubServiceImpl subService=new SubServiceImpl();
         List<Subject> list2=subService.getAllSub();
         req.setAttribute("subList",list2);
+        System.out.println("我被访问了");
+        TeacherServiceImpl teacherService=new TeacherServiceImpl();
+        List<Teacher> list3=teacherService.getAllTeacher();
+        req.setAttribute("teacherList",list3);
 
         req.getRequestDispatcher("/WEB-INF/jsp/manage.jsp").forward(req,resp);
     }

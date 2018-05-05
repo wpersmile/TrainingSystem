@@ -29,6 +29,7 @@ public class ActionServlet extends HttpServlet {
     }
 
     private void visitUpdateUserInfo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("name",req.getParameter("name"));
         req.getRequestDispatcher("/WEB-INF/jsp/updateUserInfo.jsp").forward(req,resp);
     }
 

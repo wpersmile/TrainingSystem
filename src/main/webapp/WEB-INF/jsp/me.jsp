@@ -26,6 +26,17 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <script type="application/javascript" src="js/jquery-3.3.1.min.js" ></script>
     <script type="application/javascript" src="js/bootstrap.min.js" ></script>
+
+    <style>
+        .show-userInfo{
+            margin-top: 55px;
+            margin-left: 5px;
+            margin-bottom: 20px;
+        }
+        .show-classInfo{
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
 <!--导航栏-->
@@ -61,31 +72,59 @@
     </div>
 </nav>
 <br>
-<div class="show-userInfo" style="margin-top: 100px">
+<div class="show-userInfo">
+    <h3>用户基本信息</h3>
+    <c:forEach items="${userList}" var="user">
+        <h5>昵称：${user.name}</h5>
+        <h5>邮箱：${user.email}</h5>
+        <h5>性别：${user.sex}</h5>
+        <h5>简介：${user.introduce}</h5>
 
+        <br>
+        <form action="ActionServlet?method=updateUserInfo&name=${user.name}" method="post">
+            <button class="btn btn-primary">修改个人资料</button>
+        </form>
+    </c:forEach>
 
-</div>
-<c:forEach items="${userList}" var="user">
-    <p>昵称：${user.name}</p>
-    <p>邮箱：${user.email}</p>
-    <p>性别：${user.sex}</p>
-    <p>简介：${user.introduce}</p>
-</c:forEach>
-<br>
-    <form action="ActionServlet?method=updateUserInfo" method="post">
-        <button>修改个人资料</button>
-    </form>
     <br>
     <form action="ActionServlet?method=updatePass" method="post">
-        <button>修改个人密码</button>
+        <button  class="btn btn-primary">修改个人密码</button>
     </form>
-
 </div>
+
+<hr>
+
 <div class="show-classInfo">
-    <p>所选课程：${requestScope.subNum}门</p>
-    <c:forEach items="${mySubjectList}" var="subject">
-        <p><a href="${subject.url}">${subject.subName}</a></p>
-    </c:forEach>
+    <h3>用户课程信息</h3>
+    <table class="table table-striped table-hover table-bordered">
+        <caption>个人所选课程：${requestScope.subNum}门</caption>
+        <thead>
+        <tr>
+            <th>name</th>
+            <th>退选课程</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${mySubjectList}" var="subject">
+            <tr class="success">
+                <th>${subject.subName}</th>
+                <th><a href="BaseServlet?method=deleteSubForUser&name=${subject.subName}">删除</a> </th>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+
+
+    <c:if test="${requestScope.deleteType==1}">
+        <script>
+            alert("退选成功");
+        </script>
+    </c:if>
+    <c:if test="${requestScope.deleteType==0}">
+        <script>
+            alert("失败,不存在改课程");
+        </script>
+    </c:if>
 </div>
 </body>
 </html>

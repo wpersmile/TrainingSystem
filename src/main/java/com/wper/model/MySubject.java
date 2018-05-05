@@ -1,13 +1,14 @@
 package com.wper.model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 public class MySubject implements Serializable {
     private static final long serialVersionUID = 1L;
     private int id;
     private String userPhone;
     private String subName;
-    private String addTime;
+    private Timestamp addTime;
 
     public int getId() {
         return id;
@@ -33,15 +34,15 @@ public class MySubject implements Serializable {
         this.subName = subName;
     }
 
-    public String getAddTime() {
+    public Timestamp getAddTime() {
         return addTime;
     }
 
-    public void setAddTime(String addTime) {
+    public void setAddTime(Timestamp addTime) {
         this.addTime = addTime;
     }
 
-    public MySubject(int id, String userPhone, String subName, String addTime) {
+    public MySubject(int id, String userPhone, String subName, Timestamp addTime) {
         this.id = id;
         this.userPhone = userPhone;
         this.subName = subName;

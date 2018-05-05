@@ -100,6 +100,9 @@
         <div class="row">
             <div class="col-sm-4"></div>
             <div class="col-sm-4" style="text-align: center;">
+                <span>想了解更多？米克学院唯一咨询群：</span>
+                <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=cb271d05c55ab6a456af02f1918dcc5e48348c48428d26341158c4ba9a659f0e"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="米克学院官方咨询群" title="米克学院官方咨询群"></a>
+                <br>
                 <span>Copyright © 2018-2018 All Rights Reserved</span>
                 <br/>
                 <span>版权所有：米克培训基地</span>

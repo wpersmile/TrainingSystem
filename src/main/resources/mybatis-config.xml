@@ -10,6 +10,7 @@
         <typeAlias alias="Subject" type="com.wper.model.Subject"/>
         <typeAlias alias="Files" type="com.wper.model.Files"/>
         <typeAlias alias="Video" type="com.wper.model.Video"/>
+        <typeAlias alias="Teacher" type="com.wper.model.Teacher"/>
     </typeAliases>
     <!-- 数据库环境配置 -->
     <environments default="development">
@@ -17,7 +18,7 @@
             <transactionManager type="JDBC" />
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver" />
-                <property name="url" value="jdbc:mysql://localhost:3306/train_system?useUnicode=true&amp;characterEncoding=UTF-8" />
+                <property name="url" value="jdbc:mysql://localhost:3306/train_system?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=true" />
                 <property name="username" value="root" />
                 <property name="password" value="123456" />
             </dataSource>
@@ -31,5 +32,6 @@
         <mapper resource="subjectDao.xml"/>
         <mapper resource="fileDao.xml"/>
         <mapper resource="videoDao.xml"/>
+        <mapper resource="teacherDao.xml"/>
     </mappers>
 </configuration>

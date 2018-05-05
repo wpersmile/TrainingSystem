@@ -19,7 +19,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>学院介绍</title>
+    <title>金牌讲师</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <script type="application/javascript" src="js/jquery-3.3.1.min.js" ></script>
     <script type="application/javascript" src="js/bootstrap.min.js" ></script>
@@ -47,7 +47,6 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="index.jsp">首页</a></li>
                 <li><a href="about.jsp">学院介绍</a></li>
                 <li><a href="teacher.jsp">金牌讲师</a></li>
                 <li><a href="subject.jsp">课程介绍</a></li>
@@ -71,8 +70,25 @@
 </nav>
 
 <div class="show-teacher">
-    <h3>王哈</h3>
-    <p>专业技能：java,c,c++,c#,大数据</p>
+    <c:if test="${teacherList==null}">
+        <c:redirect url="BaseServlet?method=getAllTeacher"/>
+    </c:if>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <c:forEach items="${teacherList}" var="list">
+        <div class="col-sm-8 col-md-3 col-lg-3">
+
+                <div class="thumbnail">
+                    <img src="${list.pic}" alt="${list.name}">
+                    <div class="caption" >
+                        <h3>${list.name}</h3>
+                        <p>${list.introduce}</p>
+                    </div>
+                </div>
+        </div>
+        </c:forEach>
+        <div class="col-sm-2"></div>
+    </div>
 </div>
 </body>
 </html>

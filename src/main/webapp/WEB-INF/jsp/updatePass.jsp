@@ -51,8 +51,28 @@
     </script>
 
     <style>
+
+    </style>
+    <style type="text/css">
+        body{
+            background: #EAEAEA;
+        }
         .body-update{
-            margin-top: 60px;
+            margin-top: 80px;
+        }
+        .row-style{
+            background:#DBDBDB;
+            border-radius: 18px;
+        }
+        .form-update{
+            padding: 20px 8px 20px 8px;
+        }
+        .btn-style{
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .btn-size{
+            width: 100%;
         }
     </style>
 </head>
@@ -90,14 +110,32 @@
     </div>
 </nav>
 <div class="body-update">
-    <c:if test="${sessionScope.user!=null}">
-        <form action="/BaseServlet?method=updateUserPass" method="post" id="myForm">
-            <input type="password" name="pass" id="inPass">
-            <input type="password" name="check" id="inCheck" onblur="checkPass()">
-        </form>
-        <input type="submit" onclick="submitForm()">
-    </c:if>
+    <div class="row">
+        <div class="col-md-4 col-sm-3"></div>
+        <div class="col-md-4 col-sm-6 col-xs-12 row-style">
+            <!--用户登陆表单-->
+            <c:if test="${sessionScope.user!=null}">
+            <form action="/BaseServlet?method=updateUserPass" method="post" class="form-update" id="myForm">
+
+                <div class="form-group">
+                    <label for="inPass">新密码</label>
+                    <input type="password"  class="form-control" name="pass" id="inPass">
+                </div>
+                <div class="form-group">
+                    <label for="inCheck">再次输入</label>
+                    <input type="password"  class="form-control" name="check" id="inCheck" onblur="checkPass()">
+                </div>
+            </form>
+                <div class="btn-style">
+                    <button type="submit" class="btn btn-primary btn-size" onclick="submitForm()">登录</button>
+                </div>
+            </c:if>
+        </div>
+        <div class="col-md-4 col-sm-3"></div>
+    </div>
 </div>
+
+
 
 </body>
 </html>

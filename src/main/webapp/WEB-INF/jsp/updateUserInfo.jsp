@@ -24,9 +24,27 @@
     <script type="application/javascript" src="js/jquery-3.3.1.min.js" ></script>
     <script type="application/javascript" src="js/bootstrap.min.js" ></script>
 
-    <style>
+    <style type="text/css">
+        body{
+            background: #EAEAEA;
+        }
         .body-update{
-            margin-top: 60px;
+            margin-top: 80px;
+        }
+
+        .row-style{
+            background:#DBDBDB;
+            border-radius: 18px;
+        }
+        .form-login{
+            padding: 20px 8px 20px 8px;
+        }
+        .btn-style{
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .btn-size{
+            width: 100%;
         }
     </style>
 </head>
@@ -65,19 +83,47 @@
 </nav>
 
 <div class="body-update">
-    <form action="BaseServlet?method=updateUserInfo" method="post">
-        <span>昵称：</span><input type="text" name="name" id="inName" placeholder="enter you name"><br>
-        <span>简介：</span><br>
-        <textarea name="introduce" id="inIntroduce" placeholder="write some thing for you"style="width: 300px ;height: 100px;"></textarea>
-        <!-- 性别选择-->
-        <p>请选择性别</p>
-        <label for="sexMid"><input type="radio" id="sexMid" value="0" name="choseSex">保密</label>
-        <label for="sexBoy"><input type="radio" id="sexBoy" value="1" name="choseSex">男</label>
-        <label for="sexGirl"><input type="radio" id="sexGirl" value="2" name="choseSex">女</label>
-        <br>
-        <button type="submit" id="updateOk">确认修改</button>
-    </form>
+    <div class="row">
+        <div class="col-md-4 col-sm-3"></div>
+        <div class="col-md-4 col-sm-6 col-xs-12 row-style">
+            <%--对登录信息判断--%>
+            <c:if test="${sessionScope.message!=null}">
+                <br/>
+                <span  class="label label-warning" id="check-submit-error" style="font-size: 15px">${sessionScope.message}</span>
+                ${sessionScope.message=null}
+            </c:if>
+            <!--修改用户信息-->
+            <form action="BaseServlet?method=updateUserInfo" method="post" class="form-login" id="myForm">
+                <div class="form-group">
+                    <label for="inName">昵称</label>
+                    <input type="text" class="form-control" id="inName" name="name" value="${requestScope.name}"/>
+                    <span  class="label label-warning" id="check-phone-error"></span>
+                </div>
+                <div class="form-group">
+                    <label>请选择性别</label><br>
+                    <label for="sexMid"><input type="radio" id="sexMid" value="0" name="choseSex">保密</label>
+                    <label for="sexBoy"><input type="radio" id="sexBoy" value="1" name="choseSex">男</label>
+                    <label for="sexGirl"><input type="radio" id="sexGirl" value="2" name="choseSex">女</label>
+                    <br>
+                </div>
+
+                <div class="form-group">
+                    <label for="inIntroduce">简介</label><br>
+                    <textarea name="introduce" id="inIntroduce" placeholder="write some thing for you" class="form-control" style=height:300px;"></textarea>
+                    <span  class="label label-warning" id="check-pass-error"></span>
+                </div>
+                <div class="btn-style">
+                    <button type="submit" class="btn btn-primary btn-size" id="updateOk" onclick="submitForm()">提交修改</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4 col-sm-3"></div>
+    </div>
 </div>
+
+
+
+
 
 </body>
 </html>

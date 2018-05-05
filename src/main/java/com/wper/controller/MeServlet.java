@@ -41,6 +41,7 @@ public class MeServlet extends HttpServlet {
 
         int subNum=mySubService.getCountSub(phone);
         req.setAttribute("subNum",subNum);
+        req.setAttribute("deleteType",req.getAttribute("deleteType"));
         req.getRequestDispatcher("/WEB-INF/jsp/me.jsp").forward(req,resp);
     }
 }

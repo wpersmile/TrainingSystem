@@ -1,8 +1,10 @@
 package adsad;
 
-import com.wper.model.MySubject;
-import com.wper.model.Video;
+import com.wper.model.Teacher;
 import com.wper.service.Impl.*;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Ga {
 
@@ -66,6 +68,10 @@ public class Ga {
 			 ) {
 			System.out.println(v.getId()+v.getName());
 		}*/
-	MySubServiceImpl mySubService=new MySubServiceImpl();
-	mySubService.addSubToUser(new MySubject("312312","3213123123213"));
+
+
+		Date day=new Date();
+		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+		System.out.println(df.format(day));
+
 }}

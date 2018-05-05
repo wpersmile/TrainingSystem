@@ -17,7 +17,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title></title>
+    <title>用户注册</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <script type="application/javascript" src="js/jquery-3.3.1.min.js" ></script>
     <script type="application/javascript" src="js/bootstrap.min.js" ></script>
@@ -186,7 +186,7 @@
                 </div>
             </form>
             <div class="btn-style">
-                <button type="submit" class="btn btn-primary btn-size" id="registerOk" onclick="submitForm()">登录</button>
+                <button type="submit" class="btn btn-primary btn-size" id="registerOk" onclick="submitForm()">注册</button>
             </div>
         </div>
         <div class="col-md-4 col-sm-3"></div>

@@ -27,4 +27,20 @@ public class MySubServiceImpl implements MySubService {
     public int getCountSub(String phone) {
         return mySubDao.getCountSub(phone);
     }
+
+    @Override
+    public void deleteSubForUser(String name) {
+        mySubDao.deleteSubForUser(name);
+        sqlSession.commit();
+    }
+
+    @Override
+    public Boolean emptySub(String name, String phone) {
+        int i=mySubDao.emptySub(name,phone);
+        if (i>0){
+            return false;
+        }else {
+            return true;
+        }
+    }
 }

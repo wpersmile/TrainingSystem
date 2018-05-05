@@ -3,11 +3,9 @@ package com.wper.controller;
 import com.wper.baseUtil.Md5Util;
 import com.wper.model.Files;
 import com.wper.model.MySubject;
+import com.wper.model.Teacher;
 import com.wper.model.User;
-import com.wper.service.Impl.FileServiceImpl;
-import com.wper.service.Impl.MySubServiceImpl;
-import com.wper.service.Impl.SubServiceImpl;
-import com.wper.service.Impl.UserServiceImpl;
+import com.wper.service.Impl.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -52,11 +50,17 @@ public class BaseServlet extends HttpServlet {
             case "deleteSubForUser":
                 deleteSubForUser(req,resp);
                 break;
+            case "deleteTch":
+                deleteTch(req,resp);
+                break;
+            case "getAllTeacher":
+                getAllTeacher(req,resp);
+                break;
                 default:
                     System.out.println("修改失败");
         }
     }
-    //
+
     private void updateUserInfo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session=req.getSession();
         UserServiceImpl userService=new UserServiceImpl();
@@ -86,6 +90,7 @@ public class BaseServlet extends HttpServlet {
         userService.updatePass(new User(phone,pass));
         httpSession.invalidate();
         //req.getRequestDispatcher("/MeServlet").forward(req,resp);
+
         resp.sendRedirect("login.jsp");
 
     }
@@ -159,13 +164,62 @@ public class BaseServlet extends HttpServlet {
         MySubServiceImpl mySubService=new MySubServiceImpl();
         HttpSession userSession=req.getSession();
         String phone=(String) userSession.getAttribute("user");
-        mySubService.addSubToUser(new MySubject(phone,name));
-        req.setAttribute("message",1);
-        req.getRequestDispatcher("subject.jsp").forward(req,resp);
+        //如果已选过，值为false
+        System.out.println(mySubService.emptySub(name,phone));
+        if (mySubService.emptySub(name,phone)){
+            mySubService.addSubToUser(new MySubject(phone,name));
+            req.setAttribute("addType",1);
+        }
+        else {
+            req.setAttribute("addType",0);
+        }
+        req.getRequestDispatcher("SubjectServlet").forward(req,resp);
     }
 
 
     private void deleteSubForUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doDelete(req, resp);
+        String name=req.getParameter("name");
+        MySubServiceImpl mySubService=new MySubServiceImpl();
+        HttpSession userSession=req.getSession();
+        String phone=(String) userSession.getAttribute("user");
+        if (mySubService.emptySub(name,phone)){
+            req.setAttribute("deleteType","0");
+        }
+        else {
+            mySubService.deleteSubForUser(name);
+            System.out.println("删除成功");
+            req.setAttribute("deleteType","1");
+        }
+        req.getRequestDispatcher("MeServlet").forward(req,resp);
+    }
+
+    private void deleteTch(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session=req.getSession();
+        StringBuffer url=new StringBuffer();
+        url.append(session.getServletContext().getRealPath(""));
+        int id=Integer.parseInt(req.getParameter("id"));
+
+        System.out.println(url);
+        TeacherServiceImpl teacherService=new TeacherServiceImpl();
+        List<Teacher> list=teacherService.getTeacherById(id);
+        for (Teacher t:list
+             ) {
+            url.append(t.getPic());
+        }
+        File file=new File(url.toString());
+        boolean b=file.delete();
+        if (b){
+            teacherService.deleteTeacherById(id);
+            System.out.println("删除成功");
+        }
+        req.setAttribute("message","删除成功");
+        req.getRequestDispatcher("message.jsp").forward(req,resp);
+    }
+
+    private void getAllTeacher(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        TeacherServiceImpl teacherService=new TeacherServiceImpl();
+        List<Teacher> list=teacherService.getAllTeacher();
+        req.setAttribute("teacherList",list);
+        req.getRequestDispatcher("teacher.jsp").forward(req,resp);
     }
 }

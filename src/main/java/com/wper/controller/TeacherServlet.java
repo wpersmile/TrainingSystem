@@ -1,7 +1,9 @@
 package com.wper.controller;
 
 import com.wper.model.Files;
+import com.wper.model.Teacher;
 import com.wper.service.Impl.FileServiceImpl;
+import com.wper.service.Impl.TeacherServiceImpl;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -10,15 +12,18 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
-public class UpLoadingServlet extends HttpServlet {
-
+public class TeacherServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     // 上传文件存储目录
-    private static final String UPLOAD_DIRECTORY = "files";
+    private static final String UPLOAD_DIRECTORY = "img/pic";
 
     // 上传配置
     private static final int MEMORY_THRESHOLD   = 1024 * 1024 * 3;  // 3MB
@@ -31,7 +36,7 @@ public class UpLoadingServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
-        System.out.println(request.getParameter("教师"));
+        System.out.println("教师啊");
 
         // 检测是否为多媒体上传
         if (!ServletFileUpload.isMultipartContent(request)) {
@@ -39,6 +44,7 @@ public class UpLoadingServlet extends HttpServlet {
             PrintWriter writer = response.getWriter();
             writer.println("Error: 表单必须包含 enctype=multipart/form-data");
             writer.flush();
+            System.out.println("1");
             return;
         }
 
@@ -76,13 +82,18 @@ public class UpLoadingServlet extends HttpServlet {
             @SuppressWarnings("unchecked")
             List<FileItem> formItems = upload.parseRequest(request);
             String fileName=null;
-            String fileType=null;
+            String tchName=null;
+            String info=null;
             if (formItems != null && formItems.size() > 0) {
                 // 迭代表单数据
                 for (FileItem item : formItems) {
                     // 处理不在表单中的字段 文件域
                     if (!item.isFormField()) {
-                        fileName = new File(item.getName()).getName();
+                        //会出现重复名问题
+                       // fileName = new File(item.getName()).getName();
+                        Date day=new Date();
+                        SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+                        fileName=df.format(day);
                         String filePath = uploadPath + File.separator + fileName;
                         File storeFile = new File(filePath);
                         // 在控制台输出文件的上传路径
@@ -90,21 +101,22 @@ public class UpLoadingServlet extends HttpServlet {
                         // 保存文件到硬盘
                         item.write(storeFile);
 
-
-                        System.out.println(request.getParameter("fileType"));
-
                         request.setAttribute("message",
                                 "文件上传成功!");
                     }
                     else {
                         try {
-                            if ("type".equals(item.getFieldName())){
-                                fileType=item.getString("UTF-8");
+                            if ("name".equals(item.getFieldName())){
+                                tchName=item.getString("UTF-8");
                                 //数据库存档操作
-                                String filePath=UPLOAD_DIRECTORY+"/"+fileName;
-                                FileServiceImpl fileService=new FileServiceImpl();
-                                fileService.addFile(new Files(fileName,filePath,fileType));
                             }
+                            if ("introduce".equals(item.getFieldName())){
+                                info=item.getString("UTF-8");
+                            }
+                            String filePath=UPLOAD_DIRECTORY+"/"+fileName;
+                            TeacherServiceImpl teacherService=new TeacherServiceImpl();
+                            teacherService.addTeacher(new Teacher(tchName,info,filePath));
+                            System.out.println("添加成功");
                         }
                         catch (Exception e){
                             e.printStackTrace();
@@ -117,7 +129,6 @@ public class UpLoadingServlet extends HttpServlet {
             request.setAttribute("message",
                     "错误信息: " + ex.getMessage());
         }
-
         // 跳转到 message.jsp
         request.getRequestDispatcher("message.jsp").forward(request,response);
     }
