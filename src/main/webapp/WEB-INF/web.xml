@@ -116,14 +116,14 @@
 
     <!--VideoServlet end-->
 
-    <!--TeacherServlet start-->
+    <!--AddTeacherServlet start-->
     <servlet>
-        <servlet-name>TeacherServlet</servlet-name>
-        <servlet-class>com.wper.controller.TeacherServlet</servlet-class>
+        <servlet-name>AddTeacherServlet</servlet-name>
+        <servlet-class>com.wper.controller.AddTeacherServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>TeacherServlet</servlet-name>
-        <url-pattern>/TeacherServlet</url-pattern>
+        <servlet-name>AddTeacherServlet</servlet-name>
+        <url-pattern>/AddTeacherServlet</url-pattern>
     </servlet-mapping>
-    <!--TeacherServlet end-->
+    <!--AddTeacherServlet end-->
 </web-app>

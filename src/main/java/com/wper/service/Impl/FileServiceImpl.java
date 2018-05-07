@@ -9,27 +9,72 @@ import org.apache.ibatis.session.SqlSession;
 import java.util.List;
 
 public class FileServiceImpl implements FileService {
-    private SqlSession sqlSession=MySessionFactory.getInstance().openSqlSession();
-    private FilesDao filesDao=sqlSession.getMapper(FilesDao.class);
+    private SqlSession sqlSession=null;
+    private FilesDao filesDao=null;
     @Override
     public List<Files> getAllFile() {
-        return filesDao.getAllFile();
+
+        List<Files> filesList=null;
+        sqlSession=MySessionFactory.getInstance().openSqlSession();
+        try {
+            filesDao=sqlSession.getMapper(FilesDao.class);
+            filesList=filesDao.getAllFile();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            sqlSession.close();
+        }
+        return filesList;
     }
 
     @Override
     public void addFile(Files files) {
-        filesDao.addFile(files);
-        sqlSession.commit();
+        sqlSession=MySessionFactory.getInstance().openSqlSession();
+        try {
+            filesDao=sqlSession.getMapper(FilesDao.class);
+            filesDao.addFile(files);
+            sqlSession.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            sqlSession.rollback();
+        }
+        finally {
+            sqlSession.close();
+        }
+
     }
 
     @Override
     public void deleteFile(int id) {
-        filesDao.deleteFile(id);
-        sqlSession.commit();
+        sqlSession=MySessionFactory.getInstance().openSqlSession();
+        try {
+            filesDao=sqlSession.getMapper(FilesDao.class);
+            filesDao.deleteFile(id);
+            sqlSession.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            sqlSession.rollback();
+        }
+        finally {
+            sqlSession.close();
+        }
+
     }
 
     @Override
     public List<Files> getFile(int id) {
-        return filesDao.getFile(id);
+        List<Files> filesList=null;
+        sqlSession=MySessionFactory.getInstance().openSqlSession();
+        try {
+            filesDao=sqlSession.getMapper(FilesDao.class);
+            filesList=filesDao.getFile(id);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            sqlSession.close();
+        }
+        return filesList;
     }
 }

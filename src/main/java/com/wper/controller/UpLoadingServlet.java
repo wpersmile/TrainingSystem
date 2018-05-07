@@ -93,8 +93,6 @@ public class UpLoadingServlet extends HttpServlet {
 
                         System.out.println(request.getParameter("fileType"));
 
-                        request.setAttribute("message",
-                                "文件上传成功!");
                     }
                     else {
                         try {
@@ -104,6 +102,8 @@ public class UpLoadingServlet extends HttpServlet {
                                 String filePath=UPLOAD_DIRECTORY+"/"+fileName;
                                 FileServiceImpl fileService=new FileServiceImpl();
                                 fileService.addFile(new Files(fileName,filePath,fileType));
+                                request.setAttribute("fMsg",
+                                        "上传成功");
                             }
                         }
                         catch (Exception e){
@@ -114,8 +114,8 @@ public class UpLoadingServlet extends HttpServlet {
                 }
             }
         } catch (Exception ex) {
-            request.setAttribute("message",
-                    "错误信息: " + ex.getMessage());
+            request.setAttribute("fMsg",
+                    "上传失败");
         }
 
         // 跳转到 message.jsp

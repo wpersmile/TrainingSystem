@@ -14,4 +14,16 @@
     <delete id="deleteSub" parameterType="int">
         delete from subject where id=#{id}
     </delete>
+    <!-- 4.修改课程信息-->
+    <update id="updateSubjectById" parameterType="Subject">
+        update subject
+        set name=#{name},type=#{type},info=#{info},teacher=#{teacher}
+        where id=#{id}
+    </update>
+    <!-- 5.根据ID获取课程信息-->
+    <select id="getSubById" resultType="Subject">
+         select id,name,type,addtime as addTime,info,teacher
+        from subject
+        where id=#{id}
+    </select>
 </mapper>

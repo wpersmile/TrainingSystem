@@ -21,4 +21,10 @@
        from teacher
        where id=#{id}
     </select>
+    <!-- 5.修改教师信息-->
+    <update id="updateTeacher" parameterType="Teacher">
+        update teacher
+        set name=#{name},introduce=#{introduce},pic=#{pic}
+        where id=#{id}
+    </update>
 </mapper>

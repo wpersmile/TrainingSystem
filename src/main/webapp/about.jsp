@@ -32,15 +32,18 @@
             text-indent: 2em;
         }
         .show-body{
+            margin-top: 20px;
+            margin-bottom: 20px;
         }
         .footer-body{
-            background-color: #AAAAAA;
+            padding-top: 20px;
+            margin-top: 30px;
             text-align: center;
-            padding-bottom: 5px;
-            padding-top: 18px;
+            background-color: dimgrey;
+            color: white;
         }
         .footer-body a{
-            color:black;
+            color: whitesmoke;
         }
     </style>
 
@@ -112,7 +115,7 @@
                 <span>学院介绍&nbsp;>&nbsp;</span>
                 <span id="textshow">学院介绍</span>
                 <!--面板-->
-                <div class="tab-content show-body" style="margin-top: 20px ">
+                <div class="tab-content show-body" >
                     <div class="tab-pane active" id="pane1">
                         <img src="img/about01.png" class="img-responsive">
                         <br>

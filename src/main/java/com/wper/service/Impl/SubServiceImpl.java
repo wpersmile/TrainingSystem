@@ -9,22 +9,82 @@ import org.apache.ibatis.session.SqlSession;
 import java.util.List;
 
 public class SubServiceImpl implements SubjectService {
-    private SqlSession sqlSession=MySessionFactory.getInstance().openSqlSession();
-    private SubjectDao subjectDao=sqlSession.getMapper(SubjectDao.class);
+    private SqlSession sqlSession=null;
+    private SubjectDao subjectDao=null;
     @Override
     public List<Subject> getAllSub() {
-        return subjectDao.getAllSub();
+        List<Subject> subjectList=null;
+        try {
+            sqlSession=MySessionFactory.getInstance().openSqlSession();
+            subjectDao=sqlSession.getMapper(SubjectDao.class);
+            subjectList= subjectDao.getAllSub();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            sqlSession.close();
+        }
+        return subjectList;
     }
 
     @Override
     public void addSubject(Subject subject) {
-        subjectDao.addSubject(subject);
-        sqlSession.commit();
+        try {
+            sqlSession=MySessionFactory.getInstance().openSqlSession();
+            subjectDao=sqlSession.getMapper(SubjectDao.class);
+            subjectDao.addSubject(subject);
+            sqlSession.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            sqlSession.rollback();
+        }finally {
+            sqlSession.close();
+        }
+
     }
 
     @Override
     public void deleteSub(int id) {
-        subjectDao.deleteSub(id);
-        sqlSession.commit();
+        try {
+            sqlSession=MySessionFactory.getInstance().openSqlSession();
+            subjectDao=sqlSession.getMapper(SubjectDao.class);
+            subjectDao.deleteSub(id);
+            sqlSession.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            sqlSession.rollback();
+        }finally {
+            sqlSession.close();
+        }
+
+    }
+
+    @Override
+    public void updateSubjectById(Subject subject) {
+        try {
+            sqlSession=MySessionFactory.getInstance().openSqlSession();
+            subjectDao=sqlSession.getMapper(SubjectDao.class);
+            subjectDao.updateSubjectById(subject);
+            sqlSession.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            sqlSession.rollback();
+        }finally {
+            sqlSession.close();
+        }
+    }
+
+    @Override
+    public List<Subject> getSubById(int id) {
+        List<Subject> subjectList=null;
+        try {
+            sqlSession=MySessionFactory.getInstance().openSqlSession();
+            subjectDao=sqlSession.getMapper(SubjectDao.class);
+            subjectList= subjectDao.getSubById(id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            sqlSession.close();
+        }
+        return subjectList;
     }
 }

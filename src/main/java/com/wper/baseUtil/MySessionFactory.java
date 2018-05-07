@@ -8,7 +8,7 @@ import java.io.InputStream;
 
 public class MySessionFactory {
 
-    private MySessionFactory(){};
+    private MySessionFactory(){}
     private static MySessionFactory instance=null;
 
     public static MySessionFactory getInstance(){

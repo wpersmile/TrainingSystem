@@ -27,8 +27,16 @@
     <script type="application/javascript" src="js/bootstrap.min.js" ></script>
 
     <style>
+        body{
+            background-color:#e5e5e5;
+        }
         .show-main{
             margin-top: 60px;
+        }
+        .sub-show{
+            margin-bottom: 10px;
+            background-color: whitesmoke;
+            border-radius:18px;
         }
     </style>
 </head>
@@ -78,19 +86,33 @@
     <c:redirect url="SubjectServlet"/>
 </c:if>
 <div class="show-main">
-<c:forEach items="${subList}" var="sub" varStatus="s">
-    <div class="sub-item">
-        <h3>课程名称：${sub.name}</h3>
-        <h5>课程类型：${sub.type}</h5>
-        <h5>课程描述：${sub.info}</h5>
-        <h5>主讲教师：${sub.teacher}</h5>
-        <br>
-        <c:if test="${sessionScope.user!=null}">
-            <a href="BaseServlet?method=addSubToUser&id=${sub.id}&name=${sub.name}">确认选择</a>
-        </c:if>
-        <hr>
+    <div class="container">
+        <c:forEach items="${subList}" var="sub" varStatus="s">
+        <div class="row">
+            <div class="col-sm-2"></div>
+
+            <div class="col-sm-8 sub-show">
+
+                    <div class="sub-item">
+                        <h3 style="color: #c0a16b">课程名称：${sub.name}</h3>
+                        <h5>课程类型：${sub.type}</h5>
+                        <h5>课程描述：${sub.info} <a target="_blank" href="tencent://message/?uin=775016131">了解更多</a></h5>
+                        <h5>主讲教师：${sub.teacher}</h5>
+                        <br>
+                        <c:if test="${sessionScope.user!=null}">
+                            <a href="BaseServlet?method=addSubToUser&id=${sub.id}&name=${sub.name}" style="float: right">确认选择</a>
+                        </c:if>
+                        <hr>
+                    </div>
+
+            </div>
+
+            <div class="col-sm-2"></div>
+        </div>
+        </c:forEach>
+
     </div>
-</c:forEach>
+
     <%--选课与退选提示--%>
 
     <c:if test="${requestScope.addType==1}">

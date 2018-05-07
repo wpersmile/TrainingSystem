@@ -19,6 +19,7 @@ public class VideoServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         VideoServiceImpl videoService=new VideoServiceImpl();
         List<Video> list=videoService.getAllVideo();
         req.setAttribute("vList",list);

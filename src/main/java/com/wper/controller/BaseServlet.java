@@ -1,10 +1,7 @@
 package com.wper.controller;
 
 import com.wper.baseUtil.Md5Util;
-import com.wper.model.Files;
-import com.wper.model.MySubject;
-import com.wper.model.Teacher;
-import com.wper.model.User;
+import com.wper.model.*;
 import com.wper.service.Impl.*;
 
 import javax.servlet.ServletException;
@@ -15,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BaseServlet extends HttpServlet {
@@ -47,14 +45,47 @@ public class BaseServlet extends HttpServlet {
             case "addSubToUser":
                 addSubToUser(req,resp);
                 break;
+            case "addVideo":
+                addVideo(req,resp);
+                break;
+            case "addSub":
+                addSub(req,resp);
+                break;
             case "deleteSubForUser":
                 deleteSubForUser(req,resp);
+                break;
+            case "deleteVideo":
+                deleteVideo(req,resp);
                 break;
             case "deleteTch":
                 deleteTch(req,resp);
                 break;
             case "getAllTeacher":
                 getAllTeacher(req,resp);
+                break;
+            case "getAllTeacherM":
+                getAllTeacherM(req,resp);
+                break;
+            case "getAllUser":
+                getAllUser(req,resp);
+                break;
+            case "updateTeacherById":
+                updateTeacherById(req,resp);
+                break;
+            case "updateVideoById":
+                updateVideoById(req,resp);
+                break;
+            case "getAllSubjectM":
+                getAllSubjectM(req,resp);
+                break;
+            case "getAllVideoM":
+                getAllVideoM(req,resp);
+                break;
+            case "getAllFileM":
+                getAllFileM(req,resp);
+                break;
+            case "updateSubjectById":
+                updateSubjectById(req,resp);
                 break;
                 default:
                     System.out.println("修改失败");
@@ -100,7 +131,7 @@ public class BaseServlet extends HttpServlet {
         HttpSession session=req.getSession();
         int type=(int)session.getAttribute("type");
         if (type==0){
-            String sid=req.getParameter("list");
+            String sid=req.getParameter("id");
             System.out.println(sid);
             System.out.println(req.getParameter("list"));
             int id=Integer.parseInt(sid);
@@ -113,6 +144,7 @@ public class BaseServlet extends HttpServlet {
 
             for (Files f:filesList
                  ) {
+                //获取实际位置
                 url=url+f.getUrl();
             }
             System.out.println(url);
@@ -121,12 +153,13 @@ public class BaseServlet extends HttpServlet {
           boolean b=file.delete();
             if (b){
                 fileService.deleteFile(id);
+                req.setAttribute("fMsg","删除成功");
                 System.out.println("删除成功");
             }
-            req.getRequestDispatcher("file.jsp").forward(req,resp);
+            req.getRequestDispatcher("message.jsp").forward(req,resp);
         }
         else {
-            resp.sendRedirect("index.jsp");
+            resp.sendRedirect("login.jsp");
         }
     }
 
@@ -135,24 +168,29 @@ public class BaseServlet extends HttpServlet {
         System.out.println(req.getParameter("id"));
         SubServiceImpl subService=new SubServiceImpl();
         subService.deleteSub(id);
-        req.setAttribute("message","删除成功");
+        req.setAttribute("sMsg","删除成功");
         req.getRequestDispatcher("message.jsp").forward(req,resp);
     }
 
     private void deleteUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id=Integer.parseInt(req.getParameter("id"));
-        System.out.println(req.getParameter("id"));
         UserServiceImpl userService=new UserServiceImpl();
-        System.out.println(req.getParameter("type"));
         if ("0".equals(req.getParameter("type"))){
-            req.setAttribute("message",null);
+            req.setAttribute("udMsg","F");
             System.out.println("我被执行了");
         }
         else {
             userService.deleteUser(id);
-            req.setAttribute("message","删除成功");
+            req.setAttribute("udMsg","T");
             System.out.println("删除了");
         }
+       req.getRequestDispatcher("message.jsp").forward(req,resp);
+    }
+    private void deleteVideo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int id=Integer.parseInt(req.getParameter("id"));
+        VideoServiceImpl videoService=new VideoServiceImpl();
+        videoService.deleteVideoById(id);
+        req.setAttribute("vMsg","删除成功");
         req.getRequestDispatcher("message.jsp").forward(req,resp);
     }
 
@@ -175,7 +213,30 @@ public class BaseServlet extends HttpServlet {
         }
         req.getRequestDispatcher("SubjectServlet").forward(req,resp);
     }
+    private void addVideo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String vid=req.getParameter("vid");
+        System.out.println(vid);
+        String type=req.getParameter("type");
+        System.out.println(type);
+        String name=req.getParameter("name");
+        VideoServiceImpl videoService=new VideoServiceImpl();
+        videoService.addVideo(new Video(vid,name,type));
+        req.setAttribute("vMsg","添加成功");
+        req.getRequestDispatcher("message.jsp").forward(req,resp);
+    }
 
+    private void addSub(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        SubServiceImpl subService=new SubServiceImpl();
+        System.out.println("1");
+        String name=req.getParameter("addName");
+        String type=req.getParameter("type");
+        String teacher=req.getParameter("teacher");
+        String info=req.getParameter("info");
+        subService.addSubject(new Subject(name,type,teacher,info));
+        req.setAttribute("sMsg","添加成功");
+        req.getRequestDispatcher("message.jsp").forward(req,resp);
+    }
 
     private void deleteSubForUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name=req.getParameter("name");
@@ -212,7 +273,7 @@ public class BaseServlet extends HttpServlet {
             teacherService.deleteTeacherById(id);
             System.out.println("删除成功");
         }
-        req.setAttribute("message","删除成功");
+        req.setAttribute("tMsg","删除成功");
         req.getRequestDispatcher("message.jsp").forward(req,resp);
     }
 
@@ -221,5 +282,69 @@ public class BaseServlet extends HttpServlet {
         List<Teacher> list=teacherService.getAllTeacher();
         req.setAttribute("teacherList",list);
         req.getRequestDispatcher("teacher.jsp").forward(req,resp);
+    }
+    private void getAllTeacherM(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        TeacherServiceImpl teacherService=new TeacherServiceImpl();
+        List<Teacher> list=teacherService.getAllTeacher();
+        req.setAttribute("teacherList",list);
+        req.getRequestDispatcher("/WEB-INF/jsp/teacher/tchManage.jsp").forward(req,resp);
+    }
+    private void getAllVideoM(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        VideoServiceImpl videoService=new VideoServiceImpl();
+        List<Video> videoList=videoService.getAllVideo();
+        req.setAttribute("videoList",videoList);
+        req.getRequestDispatcher("/WEB-INF/jsp/video/videoManage.jsp").forward(req,resp);
+    }
+    private void getAllSubjectM(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        SubServiceImpl subService=new SubServiceImpl();
+        List<Subject> subjectList=subService.getAllSub();
+        req.setAttribute("subList",subjectList);
+        req.getRequestDispatcher("/WEB-INF/jsp/subject/subManage.jsp").forward(req,resp);
+    }
+    private void getAllFileM(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        FileServiceImpl fileService=new FileServiceImpl();
+        List<Files> filesList=fileService.getAllFile();
+        req.setAttribute("filesList",filesList);
+        req.getRequestDispatcher("/WEB-INF/jsp/file/fileManage.jsp").forward(req,resp);
+    }
+
+    private void getAllUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UserServiceImpl userService=new UserServiceImpl();
+        List<User> list=userService.getAllUser();
+        req.setAttribute("userList",list);
+        req.getRequestDispatcher("/WEB-INF/jsp/userManage.jsp").forward(req,resp);
+    }
+
+    private void updateTeacherById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int id=Integer.parseInt(req.getParameter("id"));
+        String name=req.getParameter("name");
+        String introduce=req.getParameter("introduce");
+        String pic=req.getParameter("pic");
+        TeacherServiceImpl teacherService=new TeacherServiceImpl();
+        teacherService.updateTeacher(new Teacher(id,name,introduce,pic));
+        req.setAttribute("tMsg","T");
+        req.getRequestDispatcher("message.jsp").forward(req,resp);
+    }
+    private void updateSubjectById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int id=Integer.parseInt(req.getParameter("id"));
+        String name=req.getParameter("name");
+        String type=req.getParameter("type");
+        String info=req.getParameter("info");
+        String teacher=req.getParameter("teacher");
+        SubServiceImpl subService=new SubServiceImpl();
+        subService.updateSubjectById(new Subject(id,name,type,info,teacher));
+        req.setAttribute("sMsg","修改成功");
+        req.getRequestDispatcher("message.jsp").forward(req,resp);
+    }
+    private void updateVideoById(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int id=Integer.parseInt(req.getParameter("id"));
+        String name=req.getParameter("name");
+        String type=req.getParameter("type");
+        String vid=req.getParameter("vid");
+        System.out.println(vid+name+type);
+        VideoServiceImpl videoService=new VideoServiceImpl();
+        videoService.updateVideo(new Video(id,vid,name,type));
+        req.setAttribute("vMsg","修改成功");
+        req.getRequestDispatcher("message.jsp").forward(req,resp);
     }
 }

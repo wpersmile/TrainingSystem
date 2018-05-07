@@ -25,14 +25,28 @@
     <script type="application/javascript" src="js/bootstrap.min.js" ></script>
 
     <style type="text/css">
+        body{
+            background-color:#e5e5e5;
+        }
         .body-1{
             margin-top: 51px;
             font-size: 18px;
-            background-color: #DDDDDD;
             text-decoration: none;
         }
+        .show-vList{
+            margin-top: 20px;
+            border-radius:18px;
+            background-color: whitesmoke;
+        }
+        .footer-body{
+            padding-top: 20px;
+            margin-top: 30px;
+            text-align: center;
+            background-color: dimgrey;
+            color: white;
+        }
         .footer-body a{
-            color:black;
+            color: whitesmoke;
         }
     </style>
 </head>
@@ -80,37 +94,43 @@
 </nav>
 
 <div class="body-1">
-    <h1>米克学院在线试学视频</h1><br>
-    <c:if test="${vList==null}">
-        <c:redirect url="VideoServlet"/>
-    </c:if>
-    <c:forEach items="${vList}" var="list">
-        <ul>
-            <li><a target="_blank" href="video.jsp?vid=${list.vid}">${list.name}</a> </li>
-        </ul>
-    </c:forEach>
-</div>
-
-<h2> <a target="_blank" href="tencent://message/?uin=775016131" alt="点击这里给我发消息" title="点击这里给我发消息">获取更多</a></h2>
-</body>
-
-
-
-
-<footer class="footer navbar-fixed-bottom">
+    <img src="img/javasx1.jpg" class="img-responsive center-block">
     <div class="container">
-        <div class="row">
-            <div class="col-sm-4"></div>
-            <div class="col-sm-4" style="text-align: center;">
-                <span>想了解更多？米克学院唯一咨询群：</span>
-                <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=cb271d05c55ab6a456af02f1918dcc5e48348c48428d26341158c4ba9a659f0e"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="米克学院官方咨询群" title="米克学院官方咨询群"></a>
-                <br>
-                <span>Copyright © 2018-2018 All Rights Reserved</span>
-                <br/>
-                <span>版权所有：米克培训基地</span>
-            </div>
-            <div class="col-sm-4"></div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <c:if test="${vList==null}">
+                <c:redirect url="VideoServlet"/>
+            </c:if>
+            <c:forEach items="${vList}" var="list">
+                <div class="show-vList">
+                    <ul>
+                        <li><a target="_blank" href="video.jsp?vid=${list.vid}">${list.name}</a> </li>
+                    </ul>
+                </div>
+
+            </c:forEach>
+            <h2 style="float: right"> <a target="_blank" href="tencent://message/?uin=775016131" alt="点击这里给我发消息" title="点击这里给我发消息">获取更多</a></h2>
         </div>
     </div>
-</footer>
+    </div>
+</div>
+<!--
+	作者：wpersmile@qq.com
+	时间：2018-04-25
+	描述：footer
+-->
+<div class="footer-body">
+    <span>想了解更多？米克学院唯一咨询群：</span>
+    <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=cb271d05c55ab6a456af02f1918dcc5e48348c48428d26341158c4ba9a659f0e"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="米克学院官方咨询群" title="米克学院官方咨询群"></a>
+    <br>
+    <a href="about.jsp">关于我们</a>|
+    <a target="_blank" href="tencent://message/?uin=775016131" alt="点击这里给我发消息" title="点击这里给我发消息">联系我们</a>|
+    <a target="_blank" href="https://www.csdn.net/">学习论坛</a>|
+    <a target="_blank" href="https://github.com/wpersmile">Github</a>
+    <br />
+    <span>Copyright © 2018-2018 All Rights Reserved</span>|
+    <span>米克学院版权所有</span>
+</div>
+</body>
 </html>

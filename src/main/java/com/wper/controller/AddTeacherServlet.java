@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class TeacherServlet extends HttpServlet {
+public class AddTeacherServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     // 上传文件存储目录
@@ -116,6 +116,7 @@ public class TeacherServlet extends HttpServlet {
                             String filePath=UPLOAD_DIRECTORY+"/"+fileName;
                             TeacherServiceImpl teacherService=new TeacherServiceImpl();
                             teacherService.addTeacher(new Teacher(tchName,info,filePath));
+                            request.setAttribute("tMsg","添加成功");
                             System.out.println("添加成功");
                         }
                         catch (Exception e){
@@ -126,8 +127,9 @@ public class TeacherServlet extends HttpServlet {
                 }
             }
         } catch (Exception ex) {
-            request.setAttribute("message",
-                    "错误信息: " + ex.getMessage());
+          /*  request.setAttribute("message",
+                    "错误信息: " + ex.getMessage());*/
+          request.setAttribute("tMsg","添加失败");
         }
         // 跳转到 message.jsp
         request.getRequestDispatcher("message.jsp").forward(request,response);

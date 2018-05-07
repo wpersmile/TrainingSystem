@@ -1,6 +1,9 @@
 package com.wper.model;
 
-public class Video {
+import java.io.Serializable;
+
+public class Video implements Serializable {
+    private static final long serialVersionUID = 1L;
     private int id;
     private String vid;
     private String name;
@@ -35,6 +38,19 @@ public class Video {
     }
 
     public void setType(String type) {
+        this.type = type;
+    }
+
+    public Video(int id, String vid, String name, String type) {
+        this.id = id;
+        this.vid = vid;
+        this.name = name;
+        this.type = type;
+    }
+
+    public Video(String vid, String name, String type) {
+        this.vid = vid;
+        this.name = name;
         this.type = type;
     }
 }

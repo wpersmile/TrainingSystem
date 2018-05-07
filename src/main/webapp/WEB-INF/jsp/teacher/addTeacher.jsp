@@ -12,8 +12,14 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<c:if test="${requestScope.message!=null}">
+    <script>
+        alert("上传成功");
+        window.location.href="/file.jsp";
+    </script>
+</c:if>
 <c:if test="${sessionScope.type!=0}">
-    <c:redirect url="../../login.jsp"/>
+    <c:redirect url="../../../login.jsp"/>
 </c:if>
 <!DOCTYPE html>
 <html>
@@ -22,16 +28,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>用户管理</title>
+    <title>学院介绍</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <script type="application/javascript" src="js/jquery-3.3.1.min.js" ></script>
     <script type="application/javascript" src="js/bootstrap.min.js" ></script>
 
     <style type="text/css">
-        .userBody{
-            margin-top: 60px;
+        .addTchBody{
+            margin-top: 80px;
         }
     </style>
+    <%--教师添加--%>
+    <script>
+        function checkPic() {
+            var file=document.getElementById("inputPic").value;
+            if (file===""){
+                return false
+            }
+            else {
+               return true;
+            }
+        }
+        function checkTName() {
+            var name=document.getElementById("inTName").value;
+            if (name===""){
+                return false
+            }
+            else {
+                return true;
+            }
+        }
+        function checkTInfo() {
+            var info=document.getElementById("inIntroduce").value;
+            if (info===""){
+                return false
+            }
+            else {
+                return true;
+            }
+        }
+        function checkTch() {
+            if (checkTName()&&checkTInfo()&&checkPic()){
+                document.getElementById("form-tch").submit();
+            }
+            else {
+                alert("信息填写不完整，请重新填写");
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -78,57 +122,34 @@
 </nav>
 
 <!--学院介绍主体-->
-
-<div class="userBody">
+<div class="addTchBody">
     <div class="container">
         <div class="row">
-            <div class="col-xs-12">
-                <table class="table table-striped table-hover table-bordered">
-                    <caption>用户表</caption>
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>name</th>
-                        <th>phone</th>
-                        <th>email</th>
-                        <th>sex</th>
-                        <th>type</th>
-                        <th>regTime</th>
-                        <th>#</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:if test="${userList==null}">
-                        <c:redirect url="BaseServlet?method=getAllUser"/>
-                    </c:if>
-                    <c:forEach items="${userList}" var="list" varStatus="num">
-                        <tr class="success">
-                            <th>${num.index}</th>
-                            <th>${list.name}</th>
-                            <th>${list.phone}</th>
-                            <th>${list.email}</th>
-                            <th>${list.sex}</th>
-                            <th>${list.type}</th>
-                            <th>${list.regTime}</th>
-                            <th><a href="BaseServlet?method=deleteUser&id=${list.id}&type=${list.type}">删除</a> </th>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <div class="up-body">
+                    <form id="form-tch" action="AddTeacherServlet" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="inTName">名字</label>
+                            <input type="text" class="form-control"id="inTName" name="name" >
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPic"><h3>请选择头像</h3></label>
+                            <input type="file" id="inputPic" name="file" onclick="checkPic()">
+                            <p class="help-block">请规范上传文件内容和文件格式（图片大小：180 x 260）</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="inIntroduce">简介</label><br>
+                            <textarea name="introduce" id="inIntroduce" placeholder="write some thing for teacher" class="form-control" style=height:300px;"></textarea>
+                            <span  class="label label-warning" id="check-pass-error"></span>
+                        </div>
+                    </form>
+                    <button type="submit" style="width: 100%" class="btn btn-primary" onclick="checkTch()">确认添加</button>
+                </div>
             </div>
+            <div class="col-sm-4 "></div>
         </div>
     </div>
 </div>
-
-<c:if test="${requestScope.dMsg==0}">
-    <script>
-        alert("删除失败，管理员账户不支持删除");
-    </script>
-</c:if>
-<c:if test="${requestScope.dMsg==1}">
-    <script>
-        alert("删除成功");
-    </script>
-</c:if>
 </body>
 </html>

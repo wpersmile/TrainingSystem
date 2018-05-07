@@ -37,13 +37,14 @@
             background-color: #DDDDDD;
         }
         .footer-body{
-            background-color: #AAAAAA;
+            padding-top: 20px;
+            margin-top: 30px;
             text-align: center;
-            padding-bottom: 5px;
-            padding-top: 18px;
+            background-color: dimgrey;
+            color: white;
         }
         .footer-body a{
-            color:black;
+            color: whitesmoke;
         }
     </style>
 </head>

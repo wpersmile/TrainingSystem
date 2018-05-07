@@ -12,6 +12,12 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<c:if test="${requestScope.message!=null}">
+    <script>
+        alert("上传成功");
+        window.location.href="/file.jsp";
+    </script>
+</c:if>
 <c:if test="${sessionScope.type!=0}">
     <c:redirect url="../../login.jsp"/>
 </c:if>
@@ -22,16 +28,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>用户管理</title>
+    <title>学院介绍</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <script type="application/javascript" src="js/jquery-3.3.1.min.js" ></script>
     <script type="application/javascript" src="js/bootstrap.min.js" ></script>
 
     <style type="text/css">
-        .userBody{
-            margin-top: 60px;
+        .fileBody{
+            margin-top: 80px;
         }
     </style>
+    <%--文件上传js--%>
+    <script>
+        function checkFile() {
+            var file=document.getElementById("exampleInputFile").value;
+            if (file===""){
+                alert("文件为空，请重新选择");
+            }
+            else {
+                document.getElementById("form-up").submit();
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -77,58 +95,35 @@
     </div>
 </nav>
 
-<!--学院介绍主体-->
-
-<div class="userBody">
+<!--文件上传主体-->
+<div class="fileBody">
     <div class="container">
         <div class="row">
-            <div class="col-xs-12">
-                <table class="table table-striped table-hover table-bordered">
-                    <caption>用户表</caption>
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>name</th>
-                        <th>phone</th>
-                        <th>email</th>
-                        <th>sex</th>
-                        <th>type</th>
-                        <th>regTime</th>
-                        <th>#</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:if test="${userList==null}">
-                        <c:redirect url="BaseServlet?method=getAllUser"/>
-                    </c:if>
-                    <c:forEach items="${userList}" var="list" varStatus="num">
-                        <tr class="success">
-                            <th>${num.index}</th>
-                            <th>${list.name}</th>
-                            <th>${list.phone}</th>
-                            <th>${list.email}</th>
-                            <th>${list.sex}</th>
-                            <th>${list.type}</th>
-                            <th>${list.regTime}</th>
-                            <th><a href="BaseServlet?method=deleteUser&id=${list.id}&type=${list.type}">删除</a> </th>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <div class="up-body">
+                    <form id="form-up" action="UpLoadingServlet" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="exampleInputFile"><h3>请选择上传的文件</h3></label>
+                            <input type="file" id="exampleInputFile" name="file">
+                            <p class="help-block">请规范上传文件内容和文件格式</p>
+                        </div>
+                        <div class="form-group">
+                            <h3>请选择文件归类</h3>
+                            <select class="form-control" name="type">
+                                <c:forEach items="${subList}" var="list">
+                                    <option>${list.name}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </form>
+                    <button type="submit" class="btn btn-primary" onclick="checkFile()"style="width: 100%">确认上传</button>
+                </div>
             </div>
+            <div class="col-sm-4 "></div>
         </div>
     </div>
 </div>
 
-<c:if test="${requestScope.dMsg==0}">
-    <script>
-        alert("删除失败，管理员账户不支持删除");
-    </script>
-</c:if>
-<c:if test="${requestScope.dMsg==1}">
-    <script>
-        alert("删除成功");
-    </script>
-</c:if>
 </body>
 </html>

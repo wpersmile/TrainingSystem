@@ -9,4 +9,5 @@ public interface TeacherService {
     void addTeacher(Teacher teacher);
     void deleteTeacherById(int id);
     List<Teacher> getTeacherById(int id);
+    void updateTeacher(Teacher teacher);
 }

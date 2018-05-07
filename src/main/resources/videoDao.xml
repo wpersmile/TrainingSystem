@@ -6,22 +6,23 @@
         select id,vid,name,type
         from video
     </select>
-
-
-
-    <!--2.添加文件-->
-    <insert id="addFile" parameterType="Files">
-        insert into file(name,url,type) values (#{name},#{url},#{type})
-    </insert>
-    <!--3.删除指定文件-->
-    <delete id="deleteFile">
-        delete from file
-        where id=#{id}
-    </delete>
-    <!--4.根据id查询文件-->
-    <select id="getFile" resultType="Files">
-        select id,name,url,type,addtime as addTime
-        from file
+    <!-- 2.根据ID获取视频信息-->
+    <select id="getVideoById" resultType="Video">
+        select id,vid,name,type
+        from video
         where id=#{id}
     </select>
+    <!-- 3.增加视频-->
+    <insert id="addVideo" parameterType="Video">
+        insert into video(vid,name,type) values (#{vid},#{name},#{type})
+    </insert>
+    <!-- 4.修改视频信息-->
+    <update id="updateVideo" parameterType="Video">
+        update video set vid=#{vid},name=#{name},type=#{type}
+        where id=#{id}
+    </update>
+    <!-- 5.根据ID删除视频-->
+    <delete id="deleteVideoById" parameterType="int">
+        delete from video where id=#{id}
+    </delete>
 </mapper>

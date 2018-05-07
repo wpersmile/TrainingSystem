@@ -78,4 +78,13 @@ public class Subject implements Serializable {
         this.info = info;
         this.teacher = teacher;
     }
+    /*updateSub构造函数*/
+
+    public Subject(int id, String name, String type, String info, String teacher) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.info = info;
+        this.teacher = teacher;
+    }
 }

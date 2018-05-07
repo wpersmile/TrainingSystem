@@ -12,6 +12,12 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<c:if test="${requestScope.message!=null}">
+    <script>
+        alert("上传成功");
+        window.location.href="/file.jsp";
+    </script>
+</c:if>
 <c:if test="${sessionScope.type!=0}">
     <c:redirect url="../../login.jsp"/>
 </c:if>
@@ -22,15 +28,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>用户管理</title>
+    <title>学院介绍</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <script type="application/javascript" src="js/jquery-3.3.1.min.js" ></script>
     <script type="application/javascript" src="js/bootstrap.min.js" ></script>
 
     <style type="text/css">
-        .userBody{
-            margin-top: 60px;
-        }
+       .fileBody{
+           margin-top: 80px;
+       }
     </style>
 </head>
 <body>
@@ -77,58 +83,6 @@
     </div>
 </nav>
 
-<!--学院介绍主体-->
 
-<div class="userBody">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <table class="table table-striped table-hover table-bordered">
-                    <caption>用户表</caption>
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>name</th>
-                        <th>phone</th>
-                        <th>email</th>
-                        <th>sex</th>
-                        <th>type</th>
-                        <th>regTime</th>
-                        <th>#</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:if test="${userList==null}">
-                        <c:redirect url="BaseServlet?method=getAllUser"/>
-                    </c:if>
-                    <c:forEach items="${userList}" var="list" varStatus="num">
-                        <tr class="success">
-                            <th>${num.index}</th>
-                            <th>${list.name}</th>
-                            <th>${list.phone}</th>
-                            <th>${list.email}</th>
-                            <th>${list.sex}</th>
-                            <th>${list.type}</th>
-                            <th>${list.regTime}</th>
-                            <th><a href="BaseServlet?method=deleteUser&id=${list.id}&type=${list.type}">删除</a> </th>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-
-<c:if test="${requestScope.dMsg==0}">
-    <script>
-        alert("删除失败，管理员账户不支持删除");
-    </script>
-</c:if>
-<c:if test="${requestScope.dMsg==1}">
-    <script>
-        alert("删除成功");
-    </script>
-</c:if>
 </body>
 </html>
