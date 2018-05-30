@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.1//EN"
+        "http://tuckey.org/res/dtds/urlrewrite3.1.dtd">
+<urlrewrite>
+
+    <rule>
+        <note>teacher.jsp</note>
+        <!--地址栏显示的-->
+        <from>/teacher.html</from>
+        <!--真实的-->
+        <to type="forward">/BaseServlet?method=getAllTeacher</to>
+    </rule>
+    <rule>
+        <note>subject.jsp</note>
+        <!--地址栏显示的-->
+        <from>/subject.html</from>
+        <!--真实的-->
+        <to type="forward">/SubjectServlet</to>
+    </rule>
+    <rule>
+        <note>study.jsp</note>
+        <from>/study.html</from>
+        <to type="forward">/VideoServlet</to>
+    </rule>
+
+    <rule>
+        <from>/files.html</from>
+        <to type="forward">/FileServlet</to>
+    </rule>
+    <rule>
+        <from>/files_type.html</from>
+        <to type="forward">/BaseServlet?method=getFileByType</to>
+    </rule>
+</urlrewrite>

@@ -100,7 +100,7 @@
     <div class="row">
         <div class="col-sm-12">
             <c:if test="${vList==null}">
-                <c:redirect url="VideoServlet"/>
+                <c:redirect url="study.html"/>
             </c:if>
             <c:forEach items="${vList}" var="list">
                 <div class="show-vList">

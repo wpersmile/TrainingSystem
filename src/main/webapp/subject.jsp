@@ -83,7 +83,7 @@
 
 <%--课程信息--%>
 <c:if test="${subList==null}">
-    <c:redirect url="SubjectServlet"/>
+    <c:redirect url="subject.html"/>
 </c:if>
 <div class="show-main">
     <div class="container">
@@ -95,9 +95,11 @@
 
                     <div class="sub-item">
                         <h3 style="color: #c0a16b">课程名称：${sub.name}</h3>
-                        <h5>课程类型：${sub.type}</h5>
-                        <h5>课程描述：${sub.info} <a target="_blank" href="tencent://message/?uin=775016131">了解更多</a></h5>
-                        <h5>主讲教师：${sub.teacher}</h5>
+                        <h5><b>课程类型：${sub.type}</b></h5>
+                        <h5>课程描述：</h5>
+                        <p>${sub.info}</p>
+                        <a style="font-size: 20px" target="_blank" href="tencent://message/?uin=775016131">了解更多</a>
+                        <h4 style="color: dimgrey">主讲教师：${sub.teacher}</h4>
                         <br>
                         <c:if test="${sessionScope.user!=null}">
                             <a href="BaseServlet?method=addSubToUser&id=${sub.id}&name=${sub.name}" style="float: right">确认选择</a>

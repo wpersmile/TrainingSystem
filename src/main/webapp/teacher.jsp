@@ -89,22 +89,10 @@
 </div>
 
 <c:if test="${teacherList==null}">
-    <c:redirect url="BaseServlet?method=getAllTeacher"/>
+    <%--<c:redirect url="BaseServlet?method=getAllTeacher"/>--%>
+    <c:redirect url="teacher.html"/>
 </c:if>
 
-
-
-<%--<c:forEach items="${teacherList}"  var="list" varStatus="n">
-   <div class="thumbnail" style="width: 33%;float: left;margin-bottom: 50px">
-    <img src="${list.pic}" alt="${list.name}">
-    <div class="caption" >
-        <h3>${list.name}</h3>
-        <p>${list.introduce}</p>
-    </div>
-    </div>
-</c:forEach>
-    </div>
-</div>--%>
 <div class="show-teacher">
     <c:if test="${teacherList==null}">
         <c:redirect url="BaseServlet?method=getAllTeacher"/>

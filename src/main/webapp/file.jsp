@@ -87,14 +87,14 @@
 
 
 <c:if test="${filesList==null}">
-    <c:redirect url="FileServlet"/>
+    <c:redirect url="files.html"/>
 </c:if>
 <br>
 <div class="file-body">
     <div class="container">
         <div class="row">
             <div class="col-sm-3">
-                <form action="BaseServlet?method=getFileByType" method="post">
+                <form action="files_type.html" method="post">
                     <h3>根据类型查询文件</h3>
                     <select class="form-control" name="type">
                         <option>全部</option>
