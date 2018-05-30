@@ -43,11 +43,7 @@
     <select id="getAllUser" resultType="User">
         select id,name,phone,email,sex,type,regTime from user
     </select>
-
-    <select id="getUserByPhone" resultType="User">
-        select name,sex,phone,email,introduce from user
-        where phone=#{phone}
-    </select>
+    <!-- 9.获取用户类型-->
     <select id="getType" resultType="int">
         select type
         from user

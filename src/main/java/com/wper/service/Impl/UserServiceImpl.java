@@ -120,20 +120,6 @@ public class UserServiceImpl implements UserService {
         return pass;
     }
 
-    @Override
-    public List<User> getUserByPhone(String phone) {
-        List<User> userList=null;
-        try {
-            sqlSession=MySessionFactory.getInstance().openSqlSession();
-            userDao=sqlSession.getMapper(UserDao.class);
-           userList= userDao.getUserByPhone(phone);
-        }catch (Exception e){
-            e.printStackTrace();
-        }finally {
-            sqlSession.close();
-        }
-        return userList;
-    }
 
     @Override
     public List<User> getUser(String phone) {

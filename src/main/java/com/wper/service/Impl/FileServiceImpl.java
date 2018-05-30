@@ -77,4 +77,20 @@ public class FileServiceImpl implements FileService {
         }
         return filesList;
     }
+
+    @Override
+    public List<Files> getFileByType(String type) {
+        List<Files> filesList=null;
+        sqlSession=MySessionFactory.getInstance().openSqlSession();
+        try {
+            filesDao=sqlSession.getMapper(FilesDao.class);
+            filesList=filesDao.getFileByType(type);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            sqlSession.close();
+        }
+        return filesList;
+    }
 }

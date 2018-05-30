@@ -9,4 +9,5 @@ public interface FilesDao {
     void addFile(Files files);
     void deleteFile(int id);
     List<Files>getFile(int id);
+    List<Files>getFileByType(String type);
 }

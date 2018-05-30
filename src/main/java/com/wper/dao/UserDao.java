@@ -13,8 +13,6 @@ public interface UserDao {
     String getUserPhone(String phone);
     String getUserPass(String phone);
 
-    List<User> getUserByPhone(String phone);
-
     List<User> getUser(String phone);
 
     List<User> getAllUser();

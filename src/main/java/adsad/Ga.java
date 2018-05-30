@@ -1,10 +1,12 @@
 package adsad;
 
+import com.wper.model.Files;
 import com.wper.model.Teacher;
 import com.wper.service.Impl.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class Ga {
 
@@ -70,8 +72,12 @@ public class Ga {
 		}*/
 
 
-		Date day=new Date();
-		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
-		System.out.println(df.format(day));
 
+		FileServiceImpl fileService=new FileServiceImpl();
+		List<Files> filesList=fileService.getFileByType("数据");
+		for (Files f:filesList
+				) {
+			System.out.println(f.getName()+f.getName());
+		}
+		System.out.println("aaaa");
 }}

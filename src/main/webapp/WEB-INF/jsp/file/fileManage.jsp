@@ -19,7 +19,7 @@
     </script>
 </c:if>
 <c:if test="${sessionScope.type!=0}">
-    <c:redirect url="../../login.jsp"/>
+    <c:redirect url="login.jsp"/>
 </c:if>
 <!DOCTYPE html>
 <html>
@@ -78,10 +78,52 @@
                         <li><a href="<%=basePath+"ActionServlet?method=addTchPage"%>">教师添加</a></li>
                     </ul>
                 </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">文件管理 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="<%=basePath+"BaseServlet?method=getAllFilesM"%>">文件列表</a></li>
+                        <li><a href="<%=basePath+"ActionServlet?method=addFilePage"%>">文件添加</a></li>
+                    </ul>
+                </li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
+
+
+<!--教师表主体-->
+<div class="fileBody">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table table-striped table-hover table-bordered">
+                    <caption>文件表</caption>
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>文件名</th>
+                        <th>归属科目</th>
+                        <th>上传时间</th>
+                        <th>#</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <c:forEach items="${filesList}" var="list" varStatus="num">
+                        <tr class="success">
+                            <th>${num.index}</th>
+                            <th>${list.name}</th>
+                            <th>${list.type}</th>
+                            <th>${list.addTime}</th>
+                            <th><a href="BaseServlet?method=deleteFile&id=${list.id}">删除</a> </th>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 </body>

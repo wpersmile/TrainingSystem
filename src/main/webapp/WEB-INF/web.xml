@@ -93,16 +93,6 @@
     </servlet-mapping>
     <!--UpLoadingServlet end-->
 
-    <!--ManageServlet start-->
-    <servlet>
-        <servlet-name>ManageServlet</servlet-name>
-        <servlet-class>com.wper.controller.ManageServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ManageServlet</servlet-name>
-        <url-pattern>/ManageServlet</url-pattern>
-    </servlet-mapping>
-    <!--ManageServlet end-->
 
     <!--VideoServlet start-->
     <servlet>

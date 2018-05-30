@@ -1,7 +1,9 @@
 package com.wper.controller;
 
 import com.wper.model.Files;
+import com.wper.model.Subject;
 import com.wper.service.Impl.FileServiceImpl;
+import com.wper.service.Impl.SubServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,6 +29,9 @@ public class FileServlet extends HttpServlet {
         req.setCharacterEncoding("utf-8");
         FileServiceImpl fileService=new FileServiceImpl();
         List<Files> filesList=fileService.getAllFile();
+        SubServiceImpl subService=new SubServiceImpl();
+        List<Subject> subjectList=subService.getAllSub();
+        req.setAttribute("subjectList",subjectList);
         req.setAttribute("filesList",filesList);
         req.getRequestDispatcher("/file.jsp").forward(req,resp);
     }

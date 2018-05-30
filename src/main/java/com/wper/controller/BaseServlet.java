@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class BaseServlet extends HttpServlet {
@@ -81,9 +79,13 @@ public class BaseServlet extends HttpServlet {
             case "getAllVideoM":
                 getAllVideoM(req,resp);
                 break;
-            case "getAllFileM":
+            case "getAllFilesM":
                 getAllFileM(req,resp);
                 break;
+            case "getFileByType":
+                getFileByType(req,resp);
+                break;
+
             case "updateSubjectById":
                 updateSubjectById(req,resp);
                 break;
@@ -346,5 +348,25 @@ public class BaseServlet extends HttpServlet {
         videoService.updateVideo(new Video(id,vid,name,type));
         req.setAttribute("vMsg","修改成功");
         req.getRequestDispatcher("message.jsp").forward(req,resp);
+    }
+
+
+    private void getFileByType(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        String type=req.getParameter("type");
+        System.out.println(type);
+        FileServiceImpl fileService=new FileServiceImpl();
+        List<Files> filesList;
+        if ("全部".equals(type)){
+            filesList=fileService.getAllFile();
+        }
+        else {
+            filesList=fileService.getFileByType(type);
+        }
+       /* SubServiceImpl subService=new SubServiceImpl();
+        List<Subject> subjectList=subService.getAllSub();
+        req.setAttribute("subjectList",subjectList);*/
+        req.setAttribute("filesList",filesList);
+        req.getRequestDispatcher("file.jsp").forward(req,resp);
     }
 }

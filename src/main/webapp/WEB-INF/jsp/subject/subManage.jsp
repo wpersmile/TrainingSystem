@@ -19,7 +19,7 @@
     </script>
 </c:if>
 <c:if test="${sessionScope.type!=0}">
-    <c:redirect url="../../login.jsp"/>
+    <c:redirect url="login.jsp"/>
 </c:if>
 <!DOCTYPE html>
 <html>
@@ -79,6 +79,13 @@
                         <li><a href="<%=basePath+"ActionServlet?method=addTchPage"%>">教师添加</a></li>
                     </ul>
                 </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">文件管理 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="<%=basePath+"BaseServlet?method=getAllFilesM"%>">文件列表</a></li>
+                        <li><a href="<%=basePath+"ActionServlet?method=addFilePage"%>">文件添加</a></li>
+                    </ul>
+                </li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -111,8 +118,10 @@
                             <th>${list.type}</th>
                             <th>${list.info}</th>
                             <th>${list.addTime}</th>
+
                             <th><a href="ActionServlet?method=updateSubPage&id=${list.id}">修改</a> </th>
                             <th><a href="BaseServlet?method=deleteSub&id=${list.id}">删除</a> </th>
+
                         </tr>
                     </c:forEach>
                     </tbody>

@@ -25,8 +25,16 @@
     <script type="application/javascript" src="js/bootstrap.min.js" ></script>
 
     <style>
+        body{
+            background-color:#f9f2f4;
+        }
         .file-body{
             margin-top: 60px;
+        }
+        .file-list{
+            background-color: #e5e5e5;
+            padding-top: 8px;
+            padding-left: 8px;
         }
     </style>
 </head>
@@ -78,24 +86,42 @@
 
 
 
-<c:if test="${sessionScope.type==0}">
-    <a href="uploading.jsp">上传</a>
+<c:if test="${filesList==null}">
+    <c:redirect url="FileServlet"/>
 </c:if>
 <br>
 <div class="file-body">
-    <c:if test="${filesList==null}">
-        <c:redirect url="FileServlet"/>
-    </c:if>
-    <c:forEach items="${filesList}" var="list">
-        <span>文件名字：${list.name}</span>&nbsp;&nbsp;|&nbsp;&nbsp;
-        <span>归属科目：${list.type}</span>&nbsp;&nbsp;|&nbsp;&nbsp;
-        <span>文件上传时间：${list.addTime}</span>
-        <a href="${list.url}">下载文件</a>
-        <c:if test="${sessionScope.type==0}">
-            <a href="BaseServlet?method=deleteFile&list=${list.id}">删除文件</a>
-        </c:if>
-        <hr/>
-    </c:forEach>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <form action="BaseServlet?method=getFileByType" method="post">
+                    <h3>根据类型查询文件</h3>
+                    <select class="form-control" name="type">
+                        <option>全部</option>
+                        <option>java</option>
+                        <option>大数据</option>
+                        <option>C++</option>
+                        <option>云计算</option>
+                        <option>区块链</option>
+                        <option>分布式</option>
+                        <option>Python</option>
+                    </select>
+                    <button class="btn-primary" type="submit" style="width: 100%">查询文件</button>
+                </form>
+            </div>
+            <div class="col-sm-9 col-xs-12">
+                <c:forEach items="${filesList}" var="list">
+                    <div class="file-list">
+                        <h4>文件名：${list.name}</h4>
+                        <h5>归属科：${list.type}</h5>
+                        <h5>上传时间：${list.addTime}</h5>
+                        <h5> <a href="${list.url}">下载文件</a></h5>
+                        <hr/>
+                    </div>
+                </c:forEach>
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>

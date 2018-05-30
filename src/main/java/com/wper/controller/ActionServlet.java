@@ -72,7 +72,7 @@ public class ActionServlet extends HttpServlet {
         req.getRequestDispatcher("/WEB-INF/jsp/updatePass.jsp").forward(req,resp);
     }
     private void vManagePage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/jsp/manage.jsp").forward(req,resp);
+        req.getRequestDispatcher("/WEB-INF/jsp/userManage.jsp").forward(req,resp);
     }
 
     private void vUserManagePage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

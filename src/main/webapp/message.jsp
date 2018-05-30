@@ -102,19 +102,19 @@
 <c:if test="${requestScope.fMsg == '上传成功'}">
     <script>
         alert("上传成功");
-        window.location.href="<%=basePath+"BaseServlet?method=getAllFileM"%>";
+        window.location.href="<%=basePath+"BaseServlet?method=getAllFilesM"%>";
     </script>
 </c:if>
 <c:if test="${requestScope.fMsg == '上传失败'}">
     <script>
         alert("上传失败");
-        window.location.href="<%=basePath+"BaseServlet?method=getAllFileM"%>";
+        window.location.href="<%=basePath+"BaseServlet?method=getAllFilesM"%>";
     </script>
 </c:if>
 <c:if test="${requestScope.fMsg == '删除成功'}">
 <script>
     alert("删除成功");
-    window.location.href="<%=basePath+"BaseServlet?method=getAllFileM"%>";
+    window.location.href="<%=basePath+"BaseServlet?method=getAllFilesM"%>";
 </script>
 </c:if>
 
