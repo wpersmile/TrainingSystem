@@ -11,11 +11,6 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
-
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +18,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>米克学院</title>
+    <title>米克学院-做有情怀的、良心的IT培训</title>
+    <meta name="keywords" content="培训,IT培训,java培训,大数据培训,前端培训,后台开发,云计算">
+    <meta name="description" content="米克学院从事线上线下IT培训，课程多样，内容丰富，致力于高素质软件开发人才的培训与培养。">
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <script type="application/javascript" src="js/jquery-3.3.1.min.js" ></script>
     <script type="application/javascript" src="js/bootstrap.min.js" ></script>
@@ -65,11 +62,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.jsp">米克学院</a>
+            <a class="navbar-brand" href="index.html">米克学院</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="about.jsp">学院介绍</a></li>
+                <li><a href="about.html">学院介绍</a></li>
                 <li><a href="teacher.jsp">金牌讲师</a></li>
                 <li><a href="subject.jsp">课程介绍</a></li>
                 <li><a href="study.jsp" >在线试学</a></li>
@@ -104,13 +101,13 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
         <div class="item">
-            <img src="img/2.jpg" alt="...">
+            <img src="img/2.jpg" alt="IT培训-米克学院">
         </div>
         <div class="item active">
-            <img src="img/1.jpg" alt="...">
+            <img src="img/1.jpg" alt="IT培训-米克学院">
         </div>
         <div class="item">
-            <img src="img/3.jpg" alt="...">
+            <img src="img/3.jpg" alt="IT培训-米克学院">
         </div>
     </div>
 
@@ -131,6 +128,7 @@
 	描述：主要内容
 -->
 <div class="body-1">
+
     <div class="container">
         <div class="row">
             <div class="col-sm-1 col-md-2"></div>
@@ -172,7 +170,7 @@
         <img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="米克学院官方咨询群" title="米克学院官方咨询群"></a>
     <br>
     <a href="about.jsp">关于我们</a>|
-    <a target="_blank" href="tencent://message/?uin=775016131" alt="点击这里给我发消息" title="点击这里给我发消息">联系我们</a>|
+    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=775016131&site=qq&menu=yes">联系我们</a>|
     <a target="_blank" href="https://www.csdn.net/">学习论坛</a>|
     <a target="_blank" href="https://github.com/wpersmile">Github</a>
     <br />

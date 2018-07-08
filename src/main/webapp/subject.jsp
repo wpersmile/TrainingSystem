@@ -21,7 +21,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>课程信息</title>
+    <title>课程信息-米克学院</title>
+    <meta name="keywords" content="培训,IT培训,java培训,大数据培训,前端培训,后台开发,云计算，IT课程">
+    <meta name="description" content="米克学院从事线上线下IT培训，课程多样，内容丰富，致力于高素质软件开发人才的培训与培养。">
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <script type="application/javascript" src="js/jquery-3.3.1.min.js" ></script>
     <script type="application/javascript" src="js/bootstrap.min.js" ></script>
@@ -54,11 +56,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.jsp">米克学院</a>
+            <a class="navbar-brand" href="index.html">米克学院</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="about.jsp">学院介绍</a></li>
+                <li><a href="about.html">学院介绍</a></li>
                 <li><a href="teacher.jsp">金牌讲师</a></li>
                 <li><a href="subject.jsp">课程介绍</a></li>
                 <li><a href="study.jsp" >在线试学</a></li>
@@ -98,7 +100,7 @@
                         <h5><b>课程类型：${sub.type}</b></h5>
                         <h5>课程描述：</h5>
                         <p>${sub.info}</p>
-                        <a style="font-size: 20px" target="_blank" href="tencent://message/?uin=775016131">了解更多</a>
+                        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=775016131&site=qq&menu=yes" style="font-size: 20px">了解更多</a>
                         <h4 style="color: dimgrey">主讲教师：${sub.teacher}</h4>
                         <br>
                         <c:if test="${sessionScope.user!=null}">

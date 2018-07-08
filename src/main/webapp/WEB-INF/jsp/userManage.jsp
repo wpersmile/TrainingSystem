@@ -124,7 +124,7 @@
                             <th>${list.sex}</th>
                             <th>${list.type}</th>
                             <th>${list.regTime}</th>
-                            <th><a href="BaseServlet?method=deleteUser&id=${list.id}&type=${list.type}">删除</a> </th>
+                            <th><a href="BaseServlet?method=deleteUser&id=${list.id}&type=${list.type}" onclick="if(confirm('确认删除吗？')===false)return false;">删除</a> </th>
                         </tr>
                     </c:forEach>
                     </tbody>

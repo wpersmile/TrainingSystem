@@ -28,7 +28,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>学院介绍</title>
+    <title>教师管理</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <script type="application/javascript" src="js/jquery-3.3.1.min.js" ></script>
     <script type="application/javascript" src="js/bootstrap.min.js" ></script>
@@ -114,7 +114,7 @@
                             <th>${list.name}</th>
                             <th>${list.introduce}</th>
                             <th><a href="ActionServlet?method=updateTchPage&id=${list.id}">修改</a> </th>
-                            <th><a href="BaseServlet?method=deleteTch&id=${list.id}">删除</a> </th>
+                            <th><a href="BaseServlet?method=deleteTch&id=${list.id}" onclick="if(confirm('确认删除吗？')===false)return false;">删除</a> </th>
                         </tr>
                     </c:forEach>
                     </tbody>

@@ -12,12 +12,7 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<c:if test="${requestScope.message!=null}">
-    <script>
-        alert("上传成功");
-        window.location.href="/file.jsp";
-    </script>
-</c:if>
+
 <c:if test="${sessionScope.type!=0}">
     <c:redirect url="login.jsp"/>
 </c:if>
@@ -28,7 +23,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>学院介绍</title>
+    <title>课程信息介绍</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <script type="application/javascript" src="js/jquery-3.3.1.min.js" ></script>
     <script type="application/javascript" src="js/bootstrap.min.js" ></script>
@@ -104,6 +99,7 @@
                         <th>#</th>
                         <th>name</th>
                         <th>type</th>
+                        <th>teacher</th>
                         <th>info</th>
                         <th>addTime</th>
                         <th>#</th>
@@ -116,11 +112,12 @@
                             <th>${num.index}</th>
                             <th>${list.name}</th>
                             <th>${list.type}</th>
+                            <th>${list.teacher}</th>
                             <th>${list.info}</th>
                             <th>${list.addTime}</th>
 
                             <th><a href="ActionServlet?method=updateSubPage&id=${list.id}">修改</a> </th>
-                            <th><a href="BaseServlet?method=deleteSub&id=${list.id}">删除</a> </th>
+                            <th><a href="BaseServlet?method=deleteSub&id=${list.id}" onclick="if(confirm('确认删除吗？')===false)return false;">删除</a> </th>
 
                         </tr>
                     </c:forEach>

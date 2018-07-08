@@ -22,7 +22,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>学院介绍</title>
+    <title>个人中心</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <script type="application/javascript" src="js/jquery-3.3.1.min.js" ></script>
     <script type="application/javascript" src="js/bootstrap.min.js" ></script>
@@ -49,12 +49,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.jsp">米克学院</a>
+            <a class="navbar-brand" href="index.html">米克学院</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="index.jsp">首页</a></li>
-                <li><a href="about.jsp">学院介绍</a></li>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html">学院介绍</a></li>
                 <li><a href="teacher.jsp">金牌讲师</a></li>
                 <li><a href="subject.jsp">课程介绍</a></li>
                 <li><a href="file.jsp">资料下载</a></li>

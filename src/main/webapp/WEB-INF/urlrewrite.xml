@@ -4,6 +4,16 @@
 <urlrewrite>
 
     <rule>
+        <note>jsp->html</note>
+        <from>/index.html</from>
+        <to type="forward">/index.jsp</to>
+    </rule>
+    <rule>
+        <note>jsp->html</note>
+        <from>/about.html</from>
+        <to type="forward">/about.jsp</to>
+    </rule>
+    <rule>
         <note>teacher.jsp</note>
         <!--地址栏显示的-->
         <from>/teacher.html</from>

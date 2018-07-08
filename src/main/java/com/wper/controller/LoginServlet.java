@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
                 }
 
                 session.setMaxInactiveInterval(600);
-                resp.sendRedirect("/index.jsp");
+                resp.sendRedirect("/index.html");
             }
             else {
                 HttpSession loginTypeSession=req.getSession();

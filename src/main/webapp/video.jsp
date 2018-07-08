@@ -19,7 +19,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>米克学院</title>
+    <title>Java在线试学-米克学院</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <script type="application/javascript" src="js/jquery-3.3.1.min.js" ></script>
     <script type="application/javascript" src="js/bootstrap.min.js" ></script>
@@ -56,11 +56,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.jsp">米克学院</a>
+            <a class="navbar-brand" href="index.html">米克学院</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="index.jsp">首页</a></li>
+                <li><a href="index.html">首页</a></li>
                 <li><a href="about.jsp">学院介绍</a></li>
                 <li><a href="teacher.jsp">金牌讲师</a></li>
                 <li><a href="subject.jsp">课程介绍</a></li>
@@ -83,12 +83,12 @@
         </div><!--/.nav-collapse -->
     </div>
 </nav>
-<div class="body-1">
-    <h1>米克学院在线学习,全屏观看更佳！！！</h1>
+<div class="body-1" STYLE="z-index: 999">
     <div class="container">
         <div class="col-lg-2"></div>
         <div class="col-lg-8 col-xs-12">
-            <iframe src="http://v.qq.com/iframe/player.html?vid=${param.vid}&width=800&height=477&auto=0" height="485" width="805"></iframe>
+            <%--<iframe src="http://v.qq.com/iframe/player.html?vid=${param.vid}&width=800&height=477&auto=0" height="485" width="805"></iframe>--%>
+            <iframe frameborder="0" width="100%" height="485" src="https://v.qq.com/iframe/player.html?vid=${param.vid}&tiny=0&auto=0" allowfullscreen></iframe>
         </div>
         <div class="col-lg-2"></div>
     </div>
