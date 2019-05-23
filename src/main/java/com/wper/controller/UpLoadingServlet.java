@@ -98,12 +98,6 @@ public class UpLoadingServlet extends HttpServlet {
                         try {
                             if ("type".equals(item.getFieldName())){
                                 fileType=item.getString("UTF-8");
-                                //数据库存档操作
-                                String filePath=UPLOAD_DIRECTORY+"/"+fileName;
-                                FileServiceImpl fileService=new FileServiceImpl();
-                                fileService.addFile(new Files(fileName,filePath,fileType));
-                                request.setAttribute("fMsg",
-                                        "上传成功");
                             }
                         }
                         catch (Exception e){
@@ -112,6 +106,12 @@ public class UpLoadingServlet extends HttpServlet {
                         System.out.println(item.getFieldName());
                     }
                 }
+                //数据库存档操作
+                String filePath=UPLOAD_DIRECTORY+"/"+fileName;
+                FileServiceImpl fileService=new FileServiceImpl();
+                fileService.addFile(new Files(fileName,filePath,fileType));
+                request.setAttribute("fMsg",
+                        "上传成功");
             }
         } catch (Exception ex) {
             request.setAttribute("fMsg",

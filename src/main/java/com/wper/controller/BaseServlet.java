@@ -261,7 +261,7 @@ public class BaseServlet extends HttpServlet {
         StringBuffer url=new StringBuffer();
         url.append(session.getServletContext().getRealPath(""));
         int id=Integer.parseInt(req.getParameter("id"));
-
+        System.out.println("id:"+id);
         System.out.println(url);
         TeacherServiceImpl teacherService=new TeacherServiceImpl();
         List<Teacher> list=teacherService.getTeacherById(id);

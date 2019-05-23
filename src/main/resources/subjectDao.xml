@@ -6,7 +6,7 @@
         select id,name,type,addtime as addTime,info,teacher
         from subject
     </select>
-    <!-- 2.获取所有课程信息 -->
+    <!-- 2.添加课程信息 -->
     <insert id="addSubject" parameterType="Subject">
         insert into subject(name,type,teacher,info) values (#{name},#{type},#{teacher},#{info})
     </insert>

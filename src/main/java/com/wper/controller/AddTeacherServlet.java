@@ -18,6 +18,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author raind
+ */
 public class AddTeacherServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -25,9 +28,9 @@ public class AddTeacherServlet extends HttpServlet {
     private static final String UPLOAD_DIRECTORY = "img/pic";
 
     // 上传配置
-    private static final int MEMORY_THRESHOLD   = 1024 * 1024 * 3;  // 3MB
-    private static final int MAX_FILE_SIZE      = 1024 * 1024 * 40; // 40MB
-    private static final int MAX_REQUEST_SIZE   = 1024 * 1024 * 50; // 50MB
+    private static final int MEMORY_THRESHOLD   = 1024 * 1024 * 3;
+    private static final int MAX_FILE_SIZE      = 1024 * 1024 * 40;
+    private static final int MAX_REQUEST_SIZE   = 1024 * 1024 * 50;
 
     /**
      * 上传数据及保存文件
@@ -89,7 +92,6 @@ public class AddTeacherServlet extends HttpServlet {
                     // 处理不在表单中的字段 文件域
                     if (!item.isFormField()) {
                         //会出现重复名问题
-                       // fileName = new File(item.getName()).getName();
                         Date day=new Date();
                         SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
                         fileName=df.format(day);
@@ -112,18 +114,18 @@ public class AddTeacherServlet extends HttpServlet {
                             if ("introduce".equals(item.getFieldName())){
                                 info=item.getString("UTF-8");
                             }
-                            String filePath=UPLOAD_DIRECTORY+"/"+fileName;
-                            TeacherServiceImpl teacherService=new TeacherServiceImpl();
-                            teacherService.addTeacher(new Teacher(tchName,info,filePath));
-                            request.setAttribute("tMsg","添加成功");
-                            System.out.println("添加成功");
+
                         }
                         catch (Exception e){
                             e.printStackTrace();
                         }
-                        System.out.println(item.getFieldName());
                     }
                 }
+                String filePath=UPLOAD_DIRECTORY+"/"+fileName;
+                TeacherServiceImpl teacherService=new TeacherServiceImpl();
+                teacherService.addTeacher(new Teacher(tchName,info,filePath));
+                request.setAttribute("tMsg","添加成功");
+                System.out.println("添加成功");
             }
         } catch (Exception ex) {
           /*  request.setAttribute("message",

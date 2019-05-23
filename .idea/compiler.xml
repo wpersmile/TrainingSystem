@@ -6,13 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="TrainingSystem" />
         <module name="TrainSystem" />
+        <module name="TrainingSystem" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="TrainingSystem" target="1.9" />
-      <module name="TrainSystem" target="1.9" />
+      <module name="TrainSystem" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

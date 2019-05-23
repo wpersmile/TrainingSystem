@@ -8,8 +8,8 @@
     </select>
     <!-- 2.添加教师信息-->
     <insert id="addTeacher" parameterType="Teacher">
-        insert into teacher(id,name,introduce,pic)
-        values (#{id},#{name},#{introduce},#{pic})
+        insert into teacher(name,introduce,pic)
+        values (#{name},#{introduce},#{pic})
     </insert>
     <!-- 3.根据ID删除教师-->
     <delete id="deleteTeacherById" parameterType="int">
